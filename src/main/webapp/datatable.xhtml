@@ -1,66 +1,165 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	
 
-    <ui:define name="content">
-        <div class="ContainerIndent">
-            <p:panel>
-                <div class="ContainerIndent">
-                    <h:form id="form">
-                        <p:dataTable id="singleDT" var="outputTableEntry" value="#{outputTableView.outputTableList}" selectionMode="single" selection="#{outputTableView.selectedOutputTableEntry}" rowKey="#{outputTableEntry.unique_id}"
-                                     rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="10,15" emptyMessage="No details found with given criteria" reflow="true">
-                            <f:facet name="header">
-                                DataTable
-                            </f:facet>
 
-                            <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}" footerText="Id">
-                                <h:outputText value="#{outputTableEntry.unique_id}" />
-                            </p:column>
-                            <p:column headerText="Category" sortBy="#{outputTableEntry.category}" footerText="Category">
-                                <h:outputText value="#{outputTableEntry.category}" />
-                            </p:column>
-                            <p:column headerText="City" sortBy="#{outputTableEntry.city}" footerText="City">
-                                <h:outputText value="#{outputTableEntry.city}" />
-                            </p:column>
-                            <p:column headerText="Property" sortBy="#{outputTableEntry.property}" footerText="Property">
-                                <h:outputText value="#{outputTableEntry.property}" />
-                            </p:column>
-                            <f:facet name="footer">
-                                <p:commandButton process="singleDT" update=":form:selectedOutputTableEntry" value="View" oncomplete="PF('carDialog').show()" />
-                            </f:facet>
-                        </p:dataTable>
+	<ui:define name="content">
+		<div class="ContainerIndent">
+			<p:panel>
+				<div class="ContainerIndent">
+					<h:form id="form">
+						<p:dataTable id="singleDT" var="outputTableEntry"
+							value="#{outputTableView.outputTableList}" selectionMode="single"
+							selection="#{outputTableView.selectedOutputTableEntry}"
+							rowKey="#{outputTableEntry.unique_id}" rows="10" paginator="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="50,100"
+							emptyMessage="No details found with given criteria" reflow="true"
+							widgetVar="reviewTable" resizableColumns="false" rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}" stickyHeader="true" editable="true">
+							<f:facet name="header">
+								<p:outputPanel>
+									<h:outputText value="Search all fields:" />
+									<p:inputText id="globalFilter"
+										onkeyup="PF('reviewTable').filter()" style="width:150px"
+										placeholder="Enter keyword" />
+								</p:outputPanel>
 
-                        <p:dialog header="Output Table Entry Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" responsive="true">
-                            <p:outputPanel id="selectedOutputTableEntry" style="text-align:center;">
-                                <p:panelGrid  columns="2" rendered="#{not empty outputTableView.selectedOutputTableEntry}">
-                                    <h:outputText value="Id:" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.unique_id}" />
+								<style type="text/css">
+.errorStyle {
+	background-color: #df6060 !important;
+}
+</style>
 
-                                    <h:outputText value="Category" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.category}" />
+								<!-- <p:commandButton id="toggler" type="button" value="Columns"
+									style="float:right" icon="ui-icon-calculator" />
+								<p:columnToggler datasource="singleDT" trigger="toggler" /> -->
+							</f:facet>
+							
+							<f:facet name="{Exporters}">
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/bee.png" width="24"/>
+                <p:dataExporter type="xls" target="tbl" fileName="Export_data" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/bee.png" width="24"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="Export_data"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/bee.png" width="24"/>
+                <p:dataExporter type="csv" target="tbl" fileName="Export_data" />
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage name="/demo/images/bee.png" width="24"/>
+                <p:dataExporter type="xml" target="tbl" fileName="Export_data" />
+            </h:commandLink>
+        </f:facet>
+ 
 
-                                    <h:outputText value="City:" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.city}"/>
+							<!-- <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}"
+								footerText="Id">
+								<h:outputText value="#{outputTableEntry.unique_id}" />
+							</p:column> -->
 
-                                    <h:outputText value="Property" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.property}" />
-                                </p:panelGrid>
-                            </p:outputPanel>
-                        </p:dialog>
+							<p:column headerText="Sentiment-x"
+								sortBy="#{outputTableEntry.sentiment_x}"
+								footerText="Sentiment_x">
+								<h:outputText value="#{outputTableEntry.sentiment_x}" />
+							</p:column>
 
-                        <div class="EmptyBox20"></div>
+							<p:column headerText="Sentiment_y"
+								sortBy="#{outputTableEntry.sentiment_y}"
+								footerText="sentiment_y">
+								<h:outputText value="#{outputTableEntry.sentiment_y}" />
+							</p:column>
 
-                    </h:form>
-                </div>
-            </p:panel>
+							<p:column headerText="Review-Text" colspan="4"
+								sortBy="#{outputTableEntry.verbatim}" footerText="Sentence">
+								<h:outputText value="#{outputTableEntry.verbatim}" />
+							</p:column>
 
-            <div class="EmptyBox20"></div>
+							<p:column headerText="Source" sortBy="#{outputTableEntry.source}"
+								footerText="Source">
+								<h:outputText value="#{outputTableEntry.source}" />
+							</p:column>
+							<!-- <p:column headerText="sentence_id"
+								sortBy="#{outputTableEntry.sentence_id}"
+								footerText="sentence_id">
+								<h:outputText value="#{outputTableEntry.sentence_id}" />
+							</p:column> -->
 
-        </div>
-    </ui:define>
+							<p:column headerText="Date" sortBy="#{outputTableEntry.date}"
+								footerText="Date">
+								<h:outputText value="#{outputTableEntry.date}">
+									<f:convertDateTime pattern="MM/dd/yyyy hh:mm a" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Category"
+								sortBy="#{outputTableEntry.category}" footerText="Category"
+								filterBy="#{outputTableEntry.category}">
+								<h:outputText value="#{outputTableEntry.category}" />
+							</p:column>
+							<p:column headerText="City" sortBy="#{outputTableEntry.city}"
+								footerText="City" filterBy="#{outputTableEntry.city}">
+								<h:outputText value="#{outputTableEntry.city}" />
+							</p:column>
+							<p:column headerText="Property"
+								sortBy="#{outputTableEntry.property}" footerText="Property"
+								filterBy="#{outputTableEntry.property}">
+								<h:outputText value="#{outputTableEntry.property}" />
+							</p:column>
+							<f:facet name="footer">
+								<p:commandButton process="singleDT"
+									update=":form:selectedOutputTableEntry" value="View"
+									oncomplete="PF('carDialog').show()" />
+							</f:facet>
+						</p:dataTable>
+
+						<p:dialog header="Review information" widgetVar="carDialog"
+							modal="true" showEffect="fade" hideEffect="fade"
+							resizable="false" responsive="true">
+							<p:outputPanel id="selectedOutputTableEntry"
+								style="text-align:center;">
+								<p:panelGrid columns="2"
+									rendered="#{not empty outputTableView.selectedOutputTableEntry}">
+									<h:outputText value="Sentiment:" />
+									<h:outputText
+										value="#{outputTableView.selectedOutputTableEntry.sentiment_x}" />
+
+									<h:outputText value="Category" />
+									<h:outputText
+										value="#{outputTableView.selectedOutputTableEntry.category}" />
+
+									<h:outputText value="City:" />
+									<h:outputText
+										value="#{outputTableView.selectedOutputTableEntry.city}" />
+
+									<h:outputText value="Property" />
+									<h:outputText
+										value="#{outputTableView.selectedOutputTableEntry.property}" />
+										
+										<h:outputText value="Review-Text" />
+									<h:outputText
+										value="#{outputTableView.selectedOutputTableEntry.verbatim}" />
+								</p:panelGrid>
+							</p:outputPanel>
+						</p:dialog>
+
+						<div class="EmptyBox20"></div>
+
+					</h:form>
+				</div>
+			</p:panel>
+
+			<div class="EmptyBox20"></div>
+
+		</div>
+	</ui:define>
 
 </ui:composition>
