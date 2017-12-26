@@ -1,0 +1,20 @@
+
+server:
+  port: 9090
+
+review:
+  backend:
+    url: http://localhost:8080/review/outputTableEntry
+  
+  
+---
+# Local development environment
+spring:
+  profiles: default
+  
+
+review:
+  backend:
+    url: http://localhost:8080/review/outputTableEntry
+    
+  

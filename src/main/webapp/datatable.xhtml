@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="ContainerIndent">
+            <p:panel>
+                <div class="ContainerIndent">
+                    <h:form id="form">
+                        <p:dataTable id="singleDT" var="outputTableEntry" value="#{outputTableView.outputTableList}" selectionMode="single" selection="#{outputTableView.selectedOutputTableEntry}" rowKey="#{outputTableView.Unique_id}"
+                                     rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="10,15" emptyMessage="No details found with given criteria" reflow="true">
+                            <f:facet name="header">
+                                DataTable
+                            </f:facet>
+
+                            <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}" footerText="Id">
+                                <h:outputText value="#{outputTableEntry.Unique_id}" />
+                            </p:column>
+                            <p:column headerText="Category" sortBy="#{outputTableEntry.category}" footerText="Category">
+                                <h:outputText value="#{outputTableEntry.category}" />
+                            </p:column>
+                            <p:column headerText="City" sortBy="#{outputTableEntry.City}" footerText="City">
+                                <h:outputText value="#{outputTableEntry.City}" />
+                            </p:column>
+                            <p:column headerText="Property" sortBy="#{outputTableEntry.Property}" footerText="Property">
+                                <h:outputText value="#{outputTableEntry.Property}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="singleDT" update=":form:selectedOutputTableEntry" value="View" oncomplete="PF('carDialog').show()" />
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:dialog header="Output Table Entry Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" responsive="true">
+                            <p:outputPanel id="selectedOutputTableEntry" style="text-align:center;">
+                                <p:panelGrid  columns="2" rendered="#{not empty outputTableView.selectedOutputTableEntry}">
+                                    <h:outputText value="Id:" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.Unique_id}" />
+
+                                    <h:outputText value="Category" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.category}" />
+
+                                    <h:outputText value="City:" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.City}"/>
+
+                                    <h:outputText value="Property" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.Property}" />
+                                </p:panelGrid>
+                            </p:outputPanel>
+                        </p:dialog>
+
+                        <div class="EmptyBox20"></div>
+
+                    </h:form>
+                </div>
+            </p:panel>
+
+            <div class="EmptyBox20"></div>
+
+        </div>
+    </ui:define>
+
+</ui:composition>
