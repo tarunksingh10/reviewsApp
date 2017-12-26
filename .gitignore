@@ -7,10 +7,10 @@
 /target
 
 # Eclipse
-/.classpath
-/.project
-/.settings
-/.metadata
+.classpath
+.project
+.settings
+.metadata
 
 # Git
 !.gitignore
