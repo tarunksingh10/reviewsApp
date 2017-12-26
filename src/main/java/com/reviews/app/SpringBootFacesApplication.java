@@ -57,8 +57,9 @@ public class SpringBootFacesApplication extends SpringBootServletInitializer {
 			@Override
 			public void onStartup(ServletContext sc) throws ServletException {
 				sc.setInitParameter(Constants.ContextParams.THEME, "sentinel");
-				sc.setInitParameter(Constants.ContextParams.FONT_AWESOME, "true");
+				//sc.setInitParameter(Constants.ContextParams.FONT_AWESOME, "true");
 				sc.setInitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME, ProjectStage.Development.name());
+				sc.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", "true");
 			}
 		};
 	}

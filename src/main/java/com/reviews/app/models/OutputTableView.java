@@ -4,22 +4,26 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-
-import com.reviews.app.service.ReviewService;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import com.reviews.app.service.ReviewService;
+
 @ManagedBean(name = "outputTableView")
-@ViewScoped
+@ApplicationScoped
 public class OutputTableView implements Serializable {
 
 	/**
 	 * 
 	 */
+	
+	public OutputTableView() {
+		// TODO Auto-generated constructor stub
+	}
 	private static final long serialVersionUID = 1L;
 	@Getter
 	@Setter
@@ -31,6 +35,8 @@ public class OutputTableView implements Serializable {
 	@Setter
 	private List<OutputTable> selectedOutputTableEntries;
 
+	@Getter
+	@Setter
 	@ManagedProperty("#{reviewService}")
 	private ReviewService reviewService;
 

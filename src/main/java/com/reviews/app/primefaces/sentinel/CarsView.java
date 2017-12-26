@@ -18,16 +18,21 @@ package com.reviews.app.primefaces.sentinel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import org.primefaces.event.DragDropEvent;
 
-@ManagedBean(name="carsView")
-@ViewScoped
+import org.primefaces.event.DragDropEvent;
+@ManagedBean(name = "carsView", eager = true)
+@ApplicationScoped
 public class CarsView implements Serializable {
     
+	
+	public CarsView() {
+		// TODO Auto-generated constructor stub
+	}
     private List<Car> cars;
     private List<Car> minCars;
     private Car selectedCar;
@@ -39,6 +44,7 @@ public class CarsView implements Serializable {
     
     @PostConstruct
     public void init() {
+    	System.out.println("informaation");
         cars = service.createCars(50);
         minCars = service.createCars(10);
         droppedCars = new ArrayList<Car>();
