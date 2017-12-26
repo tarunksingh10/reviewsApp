@@ -1,31 +1,30 @@
 package com.reviews.app.service;
 
+import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.reviews.app.models.GetOutputTableResponse;
 import com.reviews.app.models.OutputTable;
 
 import lombok.extern.slf4j.Slf4j;
 
 @ManagedBean(name = "reviewService")
-@ApplicationScoped
+@ViewScoped
 @Slf4j
 public class ReviewService {
 
 	@Value("${review.backend.url}")
 	private String getOutputTableListUrl;
 
-	private RestTemplate rest;
+	@Autowired
+	private RestTemplate rest = new RestTemplate();
 
 	public List<OutputTable> getOutputTableList() {
 		final String METHOD_NAME = "getOutputTableList";
@@ -33,12 +32,14 @@ public class ReviewService {
 		List<OutputTable> getOutputTableList = null;
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			log.info("Method Name :" + METHOD_NAME + " url :" + getOutputTableListUrl);
-			ResponseEntity<GetOutputTableResponse> response = rest.exchange(getOutputTableListUrl, HttpMethod.GET,
-					new HttpEntity<>(headers), GetOutputTableResponse.class);
-			getOutputTableList = response.getBody().getListOutputTable();
+			log.info("Method Name :" + METHOD_NAME + " url :" + "http://localhost:8080/review/outputTableEntry");
+			/*ResponseEntity<GetOutputTableResponse> response = rest.exchange("http://localhost:8080/review/outputTableEntry", HttpMethod.GET,
+					new HttpEntity<>(headers), GetOutputTableResponse.class);*/
+			OutputTable[] response =  rest.getForObject("http://localhost:8080/review/outputTableEntry", OutputTable[].class);
+			getOutputTableList = Arrays.asList(response);
 		} catch (Exception e) {
 			log.error("Method Name :" + METHOD_NAME + " Unable to fetch  details. Error: " + e.getMessage());
+			e.printStackTrace();
 		}
 		log.info("Exit " + METHOD_NAME);
 		return getOutputTableList;

@@ -10,7 +10,7 @@
             <p:panel>
                 <div class="ContainerIndent">
                     <h:form id="form">
-                        <p:dataTable id="singleDT" var="outputTableEntry" value="#{outputTableView.outputTableList}" selectionMode="single" selection="#{outputTableView.selectedOutputTableEntry}" rowKey="#{outputTableView.Unique_id}"
+                        <p:dataTable id="singleDT" var="outputTableEntry" value="#{outputTableView.outputTableList}" selectionMode="single" selection="#{outputTableView.selectedOutputTableEntry}" rowKey="#{outputTableEntry.unique_id}"
                                      rows="10" paginator="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="10,15" emptyMessage="No details found with given criteria" reflow="true">
                             <f:facet name="header">
@@ -18,16 +18,16 @@
                             </f:facet>
 
                             <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}" footerText="Id">
-                                <h:outputText value="#{outputTableEntry.Unique_id}" />
+                                <h:outputText value="#{outputTableEntry.unique_id}" />
                             </p:column>
                             <p:column headerText="Category" sortBy="#{outputTableEntry.category}" footerText="Category">
                                 <h:outputText value="#{outputTableEntry.category}" />
                             </p:column>
-                            <p:column headerText="City" sortBy="#{outputTableEntry.City}" footerText="City">
-                                <h:outputText value="#{outputTableEntry.City}" />
+                            <p:column headerText="City" sortBy="#{outputTableEntry.city}" footerText="City">
+                                <h:outputText value="#{outputTableEntry.city}" />
                             </p:column>
-                            <p:column headerText="Property" sortBy="#{outputTableEntry.Property}" footerText="Property">
-                                <h:outputText value="#{outputTableEntry.Property}" />
+                            <p:column headerText="Property" sortBy="#{outputTableEntry.property}" footerText="Property">
+                                <h:outputText value="#{outputTableEntry.property}" />
                             </p:column>
                             <f:facet name="footer">
                                 <p:commandButton process="singleDT" update=":form:selectedOutputTableEntry" value="View" oncomplete="PF('carDialog').show()" />
@@ -38,16 +38,16 @@
                             <p:outputPanel id="selectedOutputTableEntry" style="text-align:center;">
                                 <p:panelGrid  columns="2" rendered="#{not empty outputTableView.selectedOutputTableEntry}">
                                     <h:outputText value="Id:" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.Unique_id}" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.unique_id}" />
 
                                     <h:outputText value="Category" />
                                     <h:outputText value="#{outputTableView.selectedOutputTableEntry.category}" />
 
                                     <h:outputText value="City:" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.City}"/>
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.city}"/>
 
                                     <h:outputText value="Property" />
-                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.Property}" />
+                                    <h:outputText value="#{outputTableView.selectedOutputTableEntry.property}" />
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:dialog>

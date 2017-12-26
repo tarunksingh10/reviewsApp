@@ -26,6 +26,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import com.reviews.app.jsf.FacesViewScope;
 import com.sun.faces.config.FacesInitializer;
@@ -57,7 +58,8 @@ public class SpringBootFacesApplication extends SpringBootServletInitializer {
 			@Override
 			public void onStartup(ServletContext sc) throws ServletException {
 				sc.setInitParameter(Constants.ContextParams.THEME, "sentinel");
-				//sc.setInitParameter(Constants.ContextParams.FONT_AWESOME, "true");
+				// sc.setInitParameter(Constants.ContextParams.FONT_AWESOME,
+				// "true");
 				sc.setInitParameter(ProjectStage.PROJECT_STAGE_PARAM_NAME, ProjectStage.Development.name());
 				sc.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", "true");
 			}
@@ -108,6 +110,11 @@ public class SpringBootFacesApplication extends SpringBootServletInitializer {
 		}
 
 		return classesSet;
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 
 }
