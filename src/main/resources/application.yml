@@ -4,7 +4,7 @@ server:
 
 review:
   backend:
-    url: http://localhost:8080/review/outputTableEntry
+    url: http://nipsilon.us-east-2.elasticbeanstalk.com/review/outputTableEntry
   
   
 ---

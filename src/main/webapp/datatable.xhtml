@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
-	
+
 
 
 	<ui:define name="content">
@@ -14,52 +14,57 @@
 						<p:dataTable id="singleDT" var="outputTableEntry"
 							value="#{outputTableView.outputTableList}" selectionMode="single"
 							selection="#{outputTableView.selectedOutputTableEntry}"
-							rowKey="#{outputTableEntry.unique_id}" rows="10" paginator="true"
+							rowKey="#{outputTableEntry.unique_id}" rows="50" paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="50,100"
 							emptyMessage="No details found with given criteria" reflow="true"
-							widgetVar="reviewTable" resizableColumns="false" rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}" stickyHeader="true" editable="true">
-							<f:facet name="header">
-								<p:outputPanel>
-									<h:outputText value="Search all fields:" />
-									<p:inputText id="globalFilter"
-										onkeyup="PF('reviewTable').filter()" style="width:150px"
-										placeholder="Enter keyword" />
-								</p:outputPanel>
-
-								<style type="text/css">
-.errorStyle {
-	background-color: #df6060 !important;
-}
-</style>
-
-								<!-- <p:commandButton id="toggler" type="button" value="Columns"
-									style="float:right" icon="ui-icon-calculator" />
-								<p:columnToggler datasource="singleDT" trigger="toggler" /> -->
-							</f:facet>
+							widgetVar="reviewTable" resizableColumns="false"
+							rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}"
+							stickyHeader="false">
 							
 							<f:facet name="{Exporters}">
             <h:commandLink>
-                <p:graphicImage name="/demo/images/bee.png" width="24"/>
-                <p:dataExporter type="xls" target="tbl" fileName="Export_data" />
+                <p:graphicImage name="/demo/images/excel.png" width="24"/>
+                <p:dataExporter type="xls" target="tbl" fileName="cars" />
             </h:commandLink>
  
             <h:commandLink>
-                <p:graphicImage name="/demo/images/bee.png" width="24"/>
-                <p:dataExporter type="pdf" target="tbl" fileName="Export_data"/>
+                <p:graphicImage name="/demo/images/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
             </h:commandLink>
  
             <h:commandLink>
-                <p:graphicImage name="/demo/images/bee.png" width="24"/>
-                <p:dataExporter type="csv" target="tbl" fileName="Export_data" />
+                <p:graphicImage name="/demo/images/csv.png" width="24"/>
+                <p:dataExporter type="csv" target="tbl" fileName="cars" />
             </h:commandLink>
  
             <h:commandLink>
-                <p:graphicImage name="/demo/images/bee.png" width="24"/>
-                <p:dataExporter type="xml" target="tbl" fileName="Export_data" />
+                <p:graphicImage name="/demo/images/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="tbl" fileName="cars" />
             </h:commandLink>
         </f:facet>
- 
+							
+
+	<style type="text/css">
+.errorStyle {
+	background-color: #efb0b0 !important;
+}
+</style>
+
+							<f:facet name="{Exporters}">
+								<h:commandLink>
+									<i class="icon-file-exce"></i>
+									<p:dataExporter type="xls" target="tbl" fileName="Export_data" />
+								</h:commandLink>
+
+								<h:commandLink>
+									<i class="icon-file-pdf"></i>
+									<p:dataExporter type="pdf" target="tbl" fileName="Export_data" />
+								</h:commandLink>
+
+							</f:facet>
+
+
 
 							<!-- <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}"
 								footerText="Id">
@@ -115,8 +120,9 @@
 								<h:outputText value="#{outputTableEntry.property}" />
 							</p:column>
 							<f:facet name="footer">
-								<p:commandButton process="singleDT"
-									update=":form:selectedOutputTableEntry" value="View"
+							
+      							<p:commandButton process="singleDT"
+									update=":form:selectedOutputTableEntry" value="Review details"
 									oncomplete="PF('carDialog').show()" />
 							</f:facet>
 						</p:dataTable>
@@ -143,8 +149,8 @@
 									<h:outputText value="Property" />
 									<h:outputText
 										value="#{outputTableView.selectedOutputTableEntry.property}" />
-										
-										<h:outputText value="Review-Text" />
+
+									<h:outputText value="Review-Text" />
 									<h:outputText
 										value="#{outputTableView.selectedOutputTableEntry.verbatim}" />
 								</p:panelGrid>
