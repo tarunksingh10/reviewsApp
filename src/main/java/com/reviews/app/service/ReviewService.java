@@ -32,10 +32,10 @@ public class ReviewService {
 		List<OutputTable> getOutputTableList = null;
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			log.info("Method Name :" + METHOD_NAME + " url :" + "http://localhost:8080/review/outputTableEntry");
+			log.info("Method Name :" + METHOD_NAME + " url :" + "http://localhost:5000/review/outputTableEntry");
 			/*ResponseEntity<GetOutputTableResponse> response = rest.exchange("http://localhost:8080/review/outputTableEntry", HttpMethod.GET,
 					new HttpEntity<>(headers), GetOutputTableResponse.class);*/
-			OutputTable[] response =  rest.getForObject("http://localhost:8080/review/outputTableEntry", OutputTable[].class);
+			OutputTable[] response =  rest.getForObject("http://localhost:5000/review/outputTableEntry", OutputTable[].class);
 			getOutputTableList = Arrays.asList(response);
 		} catch (Exception e) {
 			log.error("Method Name :" + METHOD_NAME + " Unable to fetch  details. Error: " + e.getMessage());
@@ -43,5 +43,20 @@ public class ReviewService {
 		}
 		log.info("Exit " + METHOD_NAME);
 		return getOutputTableList;
+	}
+	
+	
+	public void updateOutputTableEntry(OutputTable selectedOutputTableEntry){
+		final String METHOD_NAME = "updateOutputTableEntry";
+		log.info("ENTRY " + METHOD_NAME);
+		try {
+			log.info("Method Name :" + METHOD_NAME + " url :" + "http://localhost:5000/review/outputTableEntry");
+			 rest.put("http://localhost:5000/review/outputTableEntry/"+selectedOutputTableEntry.getId(), selectedOutputTableEntry);
+		} catch (Exception e) {
+			log.error("Method Name :" + METHOD_NAME + " Unable to update  details. Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+		log.info("Exit " + METHOD_NAME);
+		
 	}
 }

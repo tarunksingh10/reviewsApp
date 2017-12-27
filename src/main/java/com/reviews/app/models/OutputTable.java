@@ -12,6 +12,7 @@ public class OutputTable implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private String category;
 	private String City;
 	private String Sentiment_y;
@@ -27,6 +28,8 @@ public class OutputTable implements Serializable {
 	private Date Date;
 	private String Property;
 	private String Unique_id;
+	
+	private boolean editable;
 	
 	public OutputTable(){}
 

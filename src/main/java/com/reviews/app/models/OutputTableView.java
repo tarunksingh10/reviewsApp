@@ -17,14 +17,12 @@ import lombok.Data;
 @Data
 public class OutputTableView implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<OutputTable> outputTableList;
 	private OutputTable selectedOutputTableEntry;
 	private List<OutputTable> selectedOutputTableEntries;
 
-	
 	@ManagedProperty("#{reviewService}")
 	private ReviewService reviewService;
 
@@ -32,7 +30,15 @@ public class OutputTableView implements Serializable {
 	public void init() {
 		outputTableList = reviewService.getOutputTableList();
 	}
-	
 
+	public String editAction(OutputTable selectedOutputTableEntry) {
+		selectedOutputTableEntry.setEditable(true);
+		return null;
+	}
 
+	public String saveAction(OutputTable selectedOutputTableEntry) {
+		selectedOutputTableEntry.setEditable(false);
+		reviewService.updateOutputTableEntry(selectedOutputTableEntry);
+		return null;
+	}
 }
