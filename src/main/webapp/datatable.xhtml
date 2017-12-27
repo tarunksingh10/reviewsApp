@@ -18,58 +18,40 @@
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="50,100"
 							emptyMessage="No details found with given criteria" reflow="true"
-							widgetVar="reviewTable" resizableColumns="false"
+							resizableColumns="false"
 							rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}"
 							stickyHeader="false">
-							
-							<f:facet name="{Exporters}">
-            <h:commandLink>
-                <p:graphicImage name="/demo/images/excel.png" width="24"/>
-                <p:dataExporter type="xls" target="tbl" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage name="/demo/images/pdf.png" width="24"/>
-                <p:dataExporter type="pdf" target="tbl" fileName="cars"/>
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage name="/demo/images/csv.png" width="24"/>
-                <p:dataExporter type="csv" target="tbl" fileName="cars" />
-            </h:commandLink>
- 
-            <h:commandLink>
-                <p:graphicImage name="/demo/images/xml.png" width="24"/>
-                <p:dataExporter type="xml" target="tbl" fileName="cars" />
-            </h:commandLink>
-        </f:facet>
-							
 
-	<style type="text/css">
+							<style type="text/css">
 .errorStyle {
 	background-color: #efb0b0 !important;
 }
 </style>
 
-							<f:facet name="{Exporters}">
-								<h:commandLink>
-									<i class="icon-file-exce"></i>
-									<p:dataExporter type="xls" target="tbl" fileName="Export_data" />
-								</h:commandLink>
 
-								<h:commandLink>
-									<i class="icon-file-pdf"></i>
-									<p:dataExporter type="pdf" target="tbl" fileName="Export_data" />
-								</h:commandLink>
+
+							<f:facet name="header">Teebo reviews
+							
+							
+							
+									<div align="right">
+									<h:outputText value="Download data"/>
+										<h:commandLink>
+											<i class=" icon-file-excel"></i>
+											<p:dataExporter type="xls" target="singleDT"
+												fileName="singleDT" pageOnly="true" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<i class="icon-file-pdf"></i>
+											<p:dataExporter type="pdf" target="singleDT"
+												fileName="singleDT" pageOnly="true" />
+										</h:commandLink>
+								</div>
 
 							</f:facet>
 
-
-
-							<!-- <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}"
-								footerText="Id">
-								<h:outputText value="#{outputTableEntry.unique_id}" />
-							</p:column> -->
+							
 
 							<p:column headerText="Sentiment-x"
 								sortBy="#{outputTableEntry.sentiment_x}"
@@ -120,10 +102,11 @@
 								<h:outputText value="#{outputTableEntry.property}" />
 							</p:column>
 							<f:facet name="footer">
-							
-      							<p:commandButton process="singleDT"
+
+								<p:commandButton process="singleDT"
 									update=":form:selectedOutputTableEntry" value="Review details"
 									oncomplete="PF('carDialog').show()" />
+
 							</f:facet>
 						</p:dataTable>
 
@@ -158,6 +141,9 @@
 						</p:dialog>
 
 						<div class="EmptyBox20"></div>
+
+
+
 
 					</h:form>
 				</div>
