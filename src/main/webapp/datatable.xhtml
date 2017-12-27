@@ -14,42 +14,40 @@
 						<p:dataTable id="singleDT" var="outputTableEntry"
 							value="#{outputTableView.outputTableList}" selectionMode="single"
 							selection="#{outputTableView.selectedOutputTableEntry}"
-							rowKey="#{outputTableEntry.id}" rows="50" paginator="true"
+							rowKey="#{outputTableEntry.id}" rows="25" paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="50,100"
+							rowsPerPageTemplate="25,50,75,100"
 							emptyMessage="No details found with given criteria" reflow="true"
 							widgetVar="reviewTable" resizableColumns="false"
 							rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}"
 							stickyHeader="false" editable="true" rowIndexVar="rowIdx">
-								<p:outputPanel>
-									<h:outputText value="Search all fields:" />
-									<p:inputText id="globalFilter"
-										onkeyup="PF('reviewTable').filter()" style="width:150px"
-										placeholder="Enter keyword" />
-								</p:outputPanel>
-								<style type="text/css">
+
+							<p:outputPanel>
+								<h:outputText value="Search all fields:" />
+								<p:inputText id="globalFilter"
+									onkeyup="PF('reviewTable').filter()" style="width:150px"
+									placeholder="Enter keyword" />
+							</p:outputPanel>
+							<style type="text/css">
 .errorStyle {
 	background-color: #efb0b0 !important;
 }
 </style>
 
 							<f:facet name="header">Teebo reviews
-							
-							
-							
 									<div align="right">
-									<h:outputText value="Download data"/>
-										<h:commandLink>
-											<i class=" icon-file-excel"></i>
-											<p:dataExporter type="xls" target="singleDT"
-												fileName="singleDT" pageOnly="true" />
-										</h:commandLink>
+									<h:outputText value="Download data" />
+									<h:commandLink>
+										<i class=" icon-file-excel"></i>
+										<p:dataExporter type="xls" target="singleDT"
+											fileName="singleDT" pageOnly="true" />
+									</h:commandLink>
 
-										<h:commandLink>
-											<i class="icon-file-pdf"></i>
-											<p:dataExporter type="pdf" target="singleDT"
-												fileName="singleDT" pageOnly="true" />
-										</h:commandLink>
+									<h:commandLink>
+										<i class="icon-file-pdf"></i>
+										<p:dataExporter type="pdf" target="singleDT"
+											fileName="singleDT" pageOnly="true" />
+									</h:commandLink>
 								</div>
 
 							</f:facet>
@@ -64,8 +62,10 @@
 							<p:column headerText="Sentiment_y"
 								sortBy="#{outputTableEntry.sentiment_y}"
 								footerText="sentiment_y">
-								<h:outputText value="#{outputTableEntry.sentiment_y}" rendered="#{not outputTableEntry.editable}"/>
-								<h:inputText value="#{outputTableEntry.sentiment_y}" rendered="#{outputTableEntry.editable}"/>
+								<h:outputText value="#{outputTableEntry.sentiment_y}"
+									rendered="#{not outputTableEntry.editable}" />
+								<h:inputText value="#{outputTableEntry.sentiment_y}"
+									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
 							<p:column headerText="Review-Text" colspan="4"
@@ -75,8 +75,10 @@
 
 							<p:column headerText="Source" sortBy="#{outputTableEntry.source}"
 								footerText="Source">
-								<h:outputText value="#{outputTableEntry.source}" rendered="#{not outputTableEntry.editable}" />
-								<h:inputText value="#{outputTableEntry.source}" rendered="#{outputTableEntry.editable}" />
+								<h:outputText value="#{outputTableEntry.source}"
+									rendered="#{not outputTableEntry.editable}" />
+								<h:inputText value="#{outputTableEntry.source}"
+									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
 							<p:column headerText="Date" sortBy="#{outputTableEntry.date}"
@@ -89,8 +91,10 @@
 							<p:column headerText="Category"
 								sortBy="#{outputTableEntry.category}" footerText="Category"
 								filterBy="#{outputTableEntry.category}">
-								<h:outputText value="#{outputTableEntry.category}" rendered="#{not outputTableEntry.editable}" />
-								<h:inputText value="#{outputTableEntry.category}" rendered="#{outputTableEntry.editable}" />
+								<h:outputText value="#{outputTableEntry.category}"
+									rendered="#{not outputTableEntry.editable}" />
+								<h:inputText value="#{outputTableEntry.category}"
+									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 							<p:column headerText="City" sortBy="#{outputTableEntry.city}"
 								footerText="City" filterBy="#{outputTableEntry.city}">
@@ -99,14 +103,21 @@
 							<p:column headerText="Property"
 								sortBy="#{outputTableEntry.property}" footerText="Property"
 								filterBy="#{outputTableEntry.property}">
-								<h:outputText value="#{outputTableEntry.property}" rendered="#{not outputTableEntry.editable}" />
-								<h:inputText value="#{outputTableEntry.property}" rendered="#{outputTableEntry.editable}" />
+								<h:outputText value="#{outputTableEntry.property}"
+									rendered="#{not outputTableEntry.editable}" />
+								<h:inputText value="#{outputTableEntry.property}"
+									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
 							<p:column headerText="Action" footerText="Action">
-								
-								<p:commandButton   value="Edit" action="#{outputTableView.editAction(outputTableEntry)}" rendered="#{not outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
-								<p:commandButton  value="Save" action="#{outputTableView.saveAction(outputTableEntry)}" rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
+
+								<p:commandButton value="Edit"
+									action="#{outputTableView.editAction(outputTableEntry)}"
+									rendered="#{not outputTableEntry.editable}"
+									update=":form:singleDT"></p:commandButton>
+								<p:commandButton value="Save"
+									action="#{outputTableView.saveAction(outputTableEntry)}"
+									rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
 							</p:column>
 							<f:facet name="footer">
 
@@ -119,7 +130,7 @@
 
 						<p:dialog header="Review information" widgetVar="reviewDialog"
 							modal="true" showEffect="fade" hideEffect="fade"
-							resizable="false" responsive="true"  width="600px">
+							resizable="false" responsive="true" width="600px">
 							<p:outputPanel id="selectedOutputTableEntry"
 								style="text-align:center;">
 								<p:panelGrid columns="2"
@@ -148,10 +159,6 @@
 						</p:dialog>
 
 						<div class="EmptyBox20"></div>
-
-
-
-
 					</h:form>
 				</div>
 			</p:panel>

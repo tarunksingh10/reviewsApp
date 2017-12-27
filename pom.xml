@@ -16,7 +16,7 @@
 	<artifactId>reviewsApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<!-- can be 8 also -->
@@ -141,7 +141,7 @@
 				<configuration>
 					<!-- Eclipse: If Eclipse configured to refresh the workspace automatically, 
 						"mvn spring-boot:run" can fail in some rare cases. -->
-					<addResources>false</addResources>
+					<addResources>true</addResources>
 				</configuration>
 			</plugin>
 		</plugins>
