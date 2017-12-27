@@ -14,13 +14,13 @@
 						<p:dataTable id="singleDT" var="outputTableEntry"
 							value="#{outputTableView.outputTableList}" selectionMode="single"
 							selection="#{outputTableView.selectedOutputTableEntry}"
-							rowKey="#{outputTableEntry.unique_id}" rows="10" paginator="true"
+							rowKey="#{outputTableEntry.id}" rows="50" paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							rowsPerPageTemplate="50,100"
 							emptyMessage="No details found with given criteria" reflow="true"
 							widgetVar="reviewTable" resizableColumns="false"
 							rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}"
-							stickyHeader="true" editable="true" rowIndexVar="rowIdx">
+							stickyHeader="false" editable="true" rowIndexVar="rowIdx">
 							<f:facet name="header">
 								<p:outputPanel>
 									<h:outputText value="Search all fields:" />
@@ -30,40 +30,31 @@
 								</p:outputPanel>
 								<style type="text/css">
 .errorStyle {
-	background-color: #df6060 !important;
+	background-color: #efb0b0 !important;
 }
 </style>
 
+							<f:facet name="header">Teebo reviews
+							
+							
+							
+									<div align="right">
+									<h:outputText value="Download data"/>
+										<h:commandLink>
+											<i class=" icon-file-excel"></i>
+											<p:dataExporter type="xls" target="singleDT"
+												fileName="singleDT" pageOnly="true" />
+										</h:commandLink>
+
+										<h:commandLink>
+											<i class="icon-file-pdf"></i>
+											<p:dataExporter type="pdf" target="singleDT"
+												fileName="singleDT" pageOnly="true" />
+										</h:commandLink>
+								</div>
 
 							</f:facet>
 
-							<f:facet name="{Exporters}">
-								<h:commandLink>
-									<p:graphicImage name="/demo/images/bee.png" width="24" />
-									<p:dataExporter type="xls" target="tbl" fileName="Export_data" />
-								</h:commandLink>
-
-								<h:commandLink>
-									<p:graphicImage name="/demo/images/bee.png" width="24" />
-									<p:dataExporter type="pdf" target="tbl" fileName="Export_data" />
-								</h:commandLink>
-
-								<h:commandLink>
-									<p:graphicImage name="/demo/images/bee.png" width="24" />
-									<p:dataExporter type="csv" target="tbl" fileName="Export_data" />
-								</h:commandLink>
-
-								<h:commandLink>
-									<p:graphicImage name="/demo/images/bee.png" width="24" />
-									<p:dataExporter type="xml" target="tbl" fileName="Export_data" />
-								</h:commandLink>
-							</f:facet>
-
-
-							<!-- <p:column headerText="Id" sortBy="#{outputTableEntry.Unique_id}"
-								footerText="Id">
-								<h:outputText value="#{outputTableEntry.unique_id}" />
-							</p:column> -->
 
 							<p:column headerText="Sentiment-x"
 								sortBy="#{outputTableEntry.sentiment_x}"
@@ -88,11 +79,6 @@
 								<h:outputText value="#{outputTableEntry.source}" rendered="#{not outputTableEntry.editable}" />
 								<h:inputText value="#{outputTableEntry.source}" rendered="#{outputTableEntry.editable}" />
 							</p:column>
-							<!-- <p:column headerText="sentence_id"
-								sortBy="#{outputTableEntry.sentence_id}"
-								footerText="sentence_id">
-								<h:outputText value="#{outputTableEntry.sentence_id}" />
-							</p:column> -->
 
 							<p:column headerText="Date" sortBy="#{outputTableEntry.date}"
 								footerText="Date">
@@ -124,9 +110,11 @@
 								<p:commandButton  value="Save" action="#{outputTableView.saveAction(outputTableEntry)}" rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
 							</p:column>
 							<f:facet name="footer">
+
 								<p:commandButton process="singleDT"
 									update=":form:selectedOutputTableEntry" value="View"
 									oncomplete="PF('reviewDialog').show()" />
+
 							</f:facet>
 						</p:dataTable>
 
@@ -161,6 +149,9 @@
 						</p:dialog>
 
 						<div class="EmptyBox20"></div>
+
+
+
 
 					</h:form>
 				</div>

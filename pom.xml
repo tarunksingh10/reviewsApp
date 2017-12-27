@@ -23,7 +23,7 @@
 		<java.version>7</java.version>
 		<!-- can be 8.0.x also -->
 		<tomcat.version>7.0.62</tomcat.version>
-		<primefaces.version>5.2</primefaces.version>
+		<primefaces.version>5.1</primefaces.version>
 	</properties>
 
 	<dependencies>
@@ -96,12 +96,40 @@
 			<version>2.1.11</version>
 		</dependency>
 
-
+<dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.15</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>3.17</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>2.0.7</version>
+</dependency>
 
 	</dependencies>
 
