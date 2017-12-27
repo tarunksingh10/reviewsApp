@@ -50,8 +50,8 @@ public class ReviewService {
 		final String METHOD_NAME = "updateOutputTableEntry";
 		log.info("ENTRY " + METHOD_NAME);
 		try {
-			log.info("Method Name :" + METHOD_NAME + " url :" + "http://localhost:5000/review/outputTableEntry");
-			 rest.put("http://localhost:5000/review/outputTableEntry/"+selectedOutputTableEntry.getId(), selectedOutputTableEntry);
+			log.info("Method Name :" + METHOD_NAME + " url :" + "http://nipsilon.us-east-2.elasticbeanstalk.com/review/outputTableEntry");
+			 rest.put("http://nipsilon.us-east-2.elasticbeanstalk.com/review/outputTableEntry/"+selectedOutputTableEntry.getId(), selectedOutputTableEntry);
 		} catch (Exception e) {
 			log.error("Method Name :" + METHOD_NAME + " Unable to update  details. Error: " + e.getMessage());
 			e.printStackTrace();
