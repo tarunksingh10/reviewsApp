@@ -6,14 +6,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
 import com.reviews.app.models.OutputTable;
-
-import lombok.extern.slf4j.Slf4j;
 
 @ManagedBean(name = "reviewService")
 @ViewScoped
@@ -32,9 +32,7 @@ public class ReviewService {
 		List<OutputTable> getOutputTableList = null;
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			log.info("Method Name :" + METHOD_NAME + " url :" + "http://nipsilon.us-east-2.elasticbeanstalk.com");
-			/*ResponseEntity<GetOutputTableResponse> response = rest.exchange("http://localhost:8080/review/outputTableEntry", HttpMethod.GET,
-					new HttpEntity<>(headers), GetOutputTableResponse.class);*/
+			log.info("Method Name is  :" + METHOD_NAME + " url :" + "http://nipsilon.us-east-2.elasticbeanstalk.com");
 			OutputTable[] response =  rest.getForObject("http://nipsilon.us-east-2.elasticbeanstalk.com/review/outputTableEntry", OutputTable[].class);
 			getOutputTableList = Arrays.asList(response);
 		} catch (Exception e) {
