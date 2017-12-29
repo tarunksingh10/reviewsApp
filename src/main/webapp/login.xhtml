@@ -16,7 +16,7 @@
 </h:head>
 
 <h:body class="fontRegular login-back white-back">
-    
+     <h:form id="loginForm">
     <div class="Container">
         <div class="Container80 MaxWid500 Fnone MarAuto TexAlCenter PaddingTopPercent10">
             <a href="" id="login-logo">
@@ -38,16 +38,21 @@
 
                 <div class="Container90 Fnone MarAuto TexAlCenter TabContent OvHidden" id="TAB1">
                     <div class="EmptyBox50"></div>
-                    <p:inputText value="" placeholder="Username" styleClass="Container80 Fnone MarAuto Fs18"/>
+                    <p:inputText id="username" requiredMessage="Validation Error: Value is required" value="#{loginView.username}" required="true" placeholder="Username" styleClass="Container80 Fnone MarAuto Fs18"/>
                     <div class="EmptyBox10"></div>
-                    <p:password value="" placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18" feedback="false"/>
+                   
+                    <p:password id="password"  requiredMessage="Validation Error: Value is required" value="#{loginView.password}" required="true" placeholder="Password" styleClass="Container80 Fnone MarAuto Fs18" feedback="false"/>
                     <div class="EmptyBox20"></div>
-                    <div class="Container85 Fnone MarAuto softgray">
-                        <p:selectBooleanCheckbox value="accept" styleClass="Fleft" itemLabel="I Accept Terms And Policies"/>
+                   <b>#{loginView.message}</b><br/><br/>
+                   <!--  <div class="Container85 Fnone MarAuto softgray">
+                        <p:selectBooleanCheckbox required="true" value="accept" styleClass="Fleft" itemLabel="I Accept Terms And Policies"/>
                     </div>
-                    <div class="EmptyBox30"></div>
-                    <p:button  value="Log In" styleClass="Fs16" href="datatable.jsf"></p:button>
+                    <div class="EmptyBox30"></div> -->
+                    <!-- <p:button   value="Log In" styleClass="Fs16"  href="datatable.jsf"></p:button>  -->
+                  <p:commandButton value="Log In"  action="#{loginView.validateUsernamePassword}"  update=":loginForm"/> 
+                    
                     <div class="EmptyBox50"></div>
+                  
                 </div>
 
                 <!-- <div class="Container90 Fnone MarAuto DispNone TexAlCenter TabContent OvHidden" id="TAB2">
@@ -61,7 +66,7 @@
         </div>
     </div>
     <!-- LOGIN BOX COVER END -->
-    
+ </h:form>
 </h:body>
 
 </html>
