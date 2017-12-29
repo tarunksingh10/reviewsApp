@@ -3,7 +3,12 @@ package com.reviews.app.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 public class OutputTable implements Serializable {
@@ -34,6 +39,14 @@ public class OutputTable implements Serializable {
 	private boolean editable;
 	
 	public OutputTable(){}
+	
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
+	private String setenceShort;
+	
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
+	private String reviewShort;
 
 	/**
 	 * @param category
@@ -54,7 +67,7 @@ public class OutputTable implements Serializable {
 	 */
 	public OutputTable(String category, String city, String sentiment_y, String sentiment_x, String verbatim,
 			String sentence, String source, String sentence_id, String l2, String l3, String l0, String l1,
-			java.util.Date date, String property, String unique_id) {
+			java.util.Date date, String property, String unique_id,String setenceShort,String reviewShort) {
 		super();
 		this.category = category;
 		City = city;
@@ -71,8 +84,41 @@ public class OutputTable implements Serializable {
 		Date = date;
 		Property = property;
 		Unique_id = unique_id;
+		this.setenceShort=setenceShort;
+		this.reviewShort=reviewShort;
 	}
 	
 	
+	
+	public String getSetenceShort() {
+		
+		String setenceShort  = !StringUtils.isEmpty(this.Sentence) ? StringUtils.substring(this.Sentence,0,50).concat("...") : this.Sentence;
+		
+		
+		return setenceShort=setenceShort;
+	}
 
+
+
+	public void setSetenceShort(String setenceShort) {
+		this.setenceShort = setenceShort;
+	}
+
+
+
+	public String getReviewShort() {
+		
+		String reviewShort  = !StringUtils.isEmpty(this.Verbatim) ? StringUtils.substring(this.Verbatim,0,50).concat("...") : this.Verbatim;
+		
+		
+		return reviewShort=reviewShort;
+	}
+
+
+
+	public void setReviewShort(String reviewShort) {
+		this.reviewShort = reviewShort;
+	}
+
+	
 }

@@ -2,7 +2,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml"
+	 xmlns:pe="http://primefaces.org/ui/extensions">
 
 
 
@@ -52,101 +53,107 @@
 								</div>
 
 							</f:facet>
-							<p:column headerText="Review Id"
-								sortBy="#{outputTableEntry.unique_id}" footerText="Review Id">
+							<p:column headerText="Rev. Id" style="width:50px"
+								>
 								<h:outputText value="#{outputTableEntry.unique_id}" />
 							</p:column>
 
 
-							<p:column headerText="Sentence Id"
-								sortBy="#{outputTableEntry.sentence_id}"
-								footerText="Sentence Id">
-								<h:outputText value="#{outputTableEntry.sentence_id}" />
+							<p:column headerText="Sen. Id" style="width:40px"
+								
+								>
+								<h:outputText value="#{outputTableEntry.sentence_id}"/>
 							</p:column>
 
-							<p:column headerText="L3" sortBy="#{outputTableEntry.l3}"
-								footerText="L3">
-								<h:outputText value="#{outputTableEntry.l3}" />
-							</p:column>
-
+							
 							<p:column headerText="Sentiment"
-								sortBy="#{outputTableEntry.sentiment_x}" footerText="Sentiment">
+								sortBy="#{outputTableEntry.sentiment_x}" style="width:90px" >
 								<h:outputText value="#{outputTableEntry.sentiment_x}" />
 
 							</p:column>
 
 							<p:column headerText="Sentence Text"
-								sortBy="#{outputTableEntry.sentence}" footerText="Sentence Text">
-								<h:outputText value="#{outputTableEntry.sentence}" />
+								sortBy="#{outputTableEntry.sentence}" style="width:150px" >
+								<h:outputText value="#{outputTableEntry.setenceShort}" id="sentence"/>
+								
+							
+       
+                         <pe:tooltip for="sentence" value="#{outputTableEntry.sentence}" header="Sentence Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
 
 							</p:column>
 
-							<p:column headerText="Complete Review Text" colspan="4"
-								sortBy="#{outputTableEntry.verbatim}"
-								footerText="Complete Review Text">
-								<h:outputText value="#{outputTableEntry.verbatim}" />
+							<p:column headerText="Review Text" colspan="3"
+								sortBy="#{outputTableEntry.verbatim}">
+								
+								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
+								 <pe:tooltip for="text1" value="#{outputTableEntry.verbatim}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
 							</p:column>
 
-							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}"
-								footerText="L0">
+							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" filterBy="#{outputTableEntry.l0}"
+								>
 								<h:outputText value="#{outputTableEntry.l0}" />
 							</p:column>
 
-							<p:column headerText="L1" sortBy="#{outputTableEntry.l1}"
-								footerText="L1">
+							<p:column headerText="L1" sortBy="#{outputTableEntry.l1}" filterBy="#{outputTableEntry.l1}"
+								>
 								<h:outputText value="#{outputTableEntry.l1}" />
 							</p:column>
 
-							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}"
-								footerText="L2">
+							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}" filterBy="#{outputTableEntry.l2}"
+								>
 								<h:outputText value="#{outputTableEntry.l2}" />
 							</p:column>
 
-							<p:column headerText="Review Date"
-								sortBy="#{outputTableEntry.date}" footerText="Review Date">
+<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" filterBy="#{outputTableEntry.l3}"
+								>
+								<h:outputText value="#{outputTableEntry.l3}" />
+							</p:column>
+
+							<p:column headerText="Rev. Date"
+								sortBy="#{outputTableEntry.date}" >
 								<h:outputText value="#{outputTableEntry.date}">
 									<f:convertDateTime pattern="MM/dd/yyyy hh:mm a" />
 								</h:outputText>
 							</p:column>
 
-							<p:column headerText="Review  Source"
-								sortBy="#{outputTableEntry.source}" footerText="Review  Source">
+							<p:column headerText="Rev. Source"
+								sortBy="#{outputTableEntry.source}" >
 								<h:outputText value="#{outputTableEntry.source}" />
 							</p:column>
 
-							<p:column headerText="City" sortBy="#{outputTableEntry.city}"
-								footerText="City" filterBy="#{outputTableEntry.city}">
+							<p:column headerText="City" sortBy="#{outputTableEntry.city}" resizable="true"
+								 filterBy="#{outputTableEntry.city}">
 								<h:outputText value="#{outputTableEntry.city}" />
 							</p:column>
 
 
-							<p:column headerText="Property Name"
-								sortBy="#{outputTableEntry.property}" footerText="Property Name"
+							<p:column headerText="Prop. Name" resizable="true"
+								sortBy="#{outputTableEntry.property}" 
 								filterBy="#{outputTableEntry.property}">
 								<h:outputText value="#{outputTableEntry.property}" />
 
 							</p:column>
 
-							<p:column headerText="Is Category Correct ?"
-								sortBy="#{outputTableEntry.correctCategory}"
-								footerText="Is Category Correct ?">
+							<p:column headerText="Accuracy?" title="Is category correct?" style="width:30px"
+								 
+								>
 								<h:selectBooleanCheckbox
 									value="#{outputTableEntry.correctCategory}" disabled="#{not outputTableEntry.editable}"/>
 							</p:column>
 
-							<p:column headerText="Feedback" footerText="Feedback">
-								<h:outputText value="#{outputTableEntry.feedback}"
+							<p:column headerText="Feedback" >
+								<h:outputText value="#{outputTableEntry.feedback}" 
 									rendered="#{not outputTableEntry.editable}" />
 								<h:inputTextarea value="#{outputTableEntry.feedback}"
 									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
-							<p:column headerText="Action" footerText="Action">
+							<p:column headerText="Action" style="width:70px">
 								<p:commandButton value="Edit"
 									action="#{outputTableView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>
-								<p:commandButton value="Save"
+								<p:commandButton value="Save" style="width:45px"
 									action="#{outputTableView.saveAction(outputTableEntry)}"
 									rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
 							</p:column>
