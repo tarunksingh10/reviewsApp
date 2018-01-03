@@ -3,12 +3,12 @@ package com.reviews.app.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import org.apache.commons.lang3.StringUtils;
 
 @Data
 public class OutputTable implements Serializable {
@@ -24,14 +24,14 @@ public class OutputTable implements Serializable {
 	private String Sentiment_x;
 	private String Verbatim;
 	private String Sentence;
-	private String Source;
+	private String source;
 	private String sentence_id;
 	private String L2;
 	private String L3;
 	private String L0;
 	private String L1;
-	private Date Date;
-	private String Property;
+	private Date date;
+	private String property;
 	private String Unique_id;
 	private String feedback;
 	private boolean correctCategory;
@@ -75,14 +75,14 @@ public class OutputTable implements Serializable {
 		Sentiment_x = sentiment_x;
 		Verbatim = verbatim;
 		Sentence = sentence;
-		Source = source;
+		source = source;
 		this.sentence_id = sentence_id;
 		L2 = l2;
 		L3 = l3;
 		L0 = l0;
 		L1 = l1;
-		Date = date;
-		Property = property;
+		date = date;
+		property = property;
 		Unique_id = unique_id;
 		this.setenceShort=setenceShort;
 		this.reviewShort=reviewShort;

@@ -90,20 +90,20 @@
                          <pe:tooltip for="sentence" value="#{outputTableEntry.sentence}" header="Sentence Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
 
 							</p:column>
-<p:column headerText="Rev. Date"
-								sortBy="#{outputTableEntry.date}" >
+							<p:column headerText="Rev. Date"
+								sortBy="#{outputTableEntry.date}" style="width:100px">
 								<h:outputText value="#{outputTableEntry.date}">
 									<f:convertDateTime pattern="MM/dd/yyyy hh:mm a" />
 								</h:outputText>
 							</p:column>
 
 							<p:column headerText="Rev. Src"
-								sortBy="#{outputTableEntry.source}" >
+								sortBy="#{outputTableEntry.source}" style="width:100px">
 								<h:outputText value="#{outputTableEntry.source}" />
 							</p:column>
 
-							<p:column headerText="Review Text" colspan="2"
-								sortBy="#{outputTableEntry.verbatim}">
+							<p:column headerText="Review Text"
+								sortBy="#{outputTableEntry.verbatim}" style="width:150px">
 								
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
 								 <pe:tooltip for="text1" value="#{outputTableEntry.verbatim}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
@@ -114,23 +114,23 @@
 								<h:outputText value="#{outputTableEntry.l0}" />
 							</p:column>
 
-							<p:column headerText="L1" sortBy="#{outputTableEntry.l1}" filterBy="#{outputTableEntry.l1}"  filterStyle="width:50px"
+							<p:column headerText="L1" sortBy="#{outputTableEntry.l1}" style="width:80px" filterBy="#{outputTableEntry.l1}"  filterStyle="width:50px"
 								>
 								<h:outputText value="#{outputTableEntry.l1}" />
 							</p:column>
 
-							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}" filterBy="#{outputTableEntry.l2}"  filterStyle="width:50px"
+							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}" style="width:80px" filterBy="#{outputTableEntry.l2}"  filterStyle="width:50px"
 								>
 								<h:outputText value="#{outputTableEntry.l2}" />
 							</p:column>
 
-<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" filterBy="#{outputTableEntry.l3}"  filterStyle="width:50px"
+<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" filterBy="#{outputTableEntry.l3}"  style="width:100px" filterStyle="width:50px"
 								>
 								<h:outputText value="#{outputTableEntry.l3}" />
 							</p:column>
 
 							
-							<p:column headerText="City" sortBy="#{outputTableEntry.city}" resizable="true" filterStyle="width:50px"
+							<p:column headerText="City" sortBy="#{outputTableEntry.city}" resizable="true" style="width:80px" filterStyle="width:50px"
 								 filterBy="#{outputTableEntry.city}">
 								<h:outputText value="#{outputTableEntry.city}" />
 							</p:column>
@@ -158,11 +158,11 @@
 							</p:column>
 
 							<p:column headerText="Action" style="width:70px" exportable="false">
-								<p:commandButton value="Edit"
+								<p:commandButton value="Edit" id="edit"
 									action="#{outputTableView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>
-								<p:commandButton value="Save"
+								<p:commandButton value="Save" id="save"
 									action="#{outputTableView.saveAction(outputTableEntry)}"
 									rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
 							</p:column>
