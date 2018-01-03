@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import lombok.Data;
 
@@ -16,6 +18,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.primefaces.event.FileUploadEvent;
 
 import com.reviews.app.service.ReviewService;
 
@@ -63,5 +66,10 @@ public class OutputTableView implements Serializable {
 	             
 	            cell.setCellStyle(cellStyle);
 	        }
+	    }
+	 
+	 public void handleFileUpload(FileUploadEvent event) {
+	        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }
 }

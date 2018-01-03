@@ -33,26 +33,20 @@
 							stickyHeader="false" editable="true" rowIndexVar="rowIdx"
 							scrollable="true">
 
-							<p:outputPanel>
-								<h:outputText value="Search all fields:" />
-								<p:inputText id="globalFilter"
-									onkeyup="PF('reviewTable').filter()" style="width:150px"
-									placeholder="Enter keyword" />
-							</p:outputPanel>
-							<style type="text/css">
-.errorStyle {
-	background-color: #efb0b0 !important;
-}
-</style>
+							
+							
 
-							<f:facet name="header">Teebo reviews
+							<f:facet name="header">Treebo reviews
 									<div align="right">
 									<h:outputText value="Download data" />
+									
+														
 									<h:commandLink>
 										<i class=" icon-file-excel"></i>
 										<p:dataExporter type="xls" target="singleDT"
 											fileName="Reviews" pageOnly="true" />
 									</h:commandLink>
+									
 
 									<!-- <h:commandLink>
 										<i class="icon-file-pdf"></i>
@@ -74,7 +68,9 @@
 								<h:outputText value="#{outputTableEntry.sentence_id}"/>
 							</p:column>  -->
 
-							
+					<p:column style="width:20px" exportable="false">
+            <p:rowToggler  />
+        </p:column>
 							<p:column headerText="Sentiment"
 								sortBy="#{outputTableEntry.sentiment_x}" style="width:85px" >
 								<h:outputText value="#{outputTableEntry.sentiment_x}" />
@@ -82,7 +78,7 @@
 							</p:column>
 
 							<p:column headerText="Sentence Text"
-								sortBy="#{outputTableEntry.sentence}" style="width:120px" >
+								 style="width:120px" >
 								<h:outputText value="#{outputTableEntry.setenceShort}" id="sentence"/>
 								
 							
@@ -103,7 +99,7 @@
 							</p:column>
 
 							<p:column headerText="Review Text" colspan="2"
-								sortBy="#{outputTableEntry.verbatim}">
+							>
 								
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
 								 <pe:tooltip for="text1" value="#{outputTableEntry.verbatim}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
@@ -136,7 +132,7 @@
 							</p:column>
 
 
-							<p:column headerText="Pro. Name" resizable="true"
+							<p:column headerText="Hotel" resizable="true"
 								sortBy="#{outputTableEntry.property}" 
 								filterBy="#{outputTableEntry.property}" filterStyle="width:50px">
 								<h:outputText value="#{outputTableEntry.property}"  />
@@ -172,7 +168,24 @@
 									update=":form:selectedOutputTableEntry" value="View"
 									oncomplete="PF('reviewDialog').show()" />
 							</f:facet>
-						</p:dataTable>
+							
+							
+					<p:rowExpansion>
+							
+							 <p:panelGrid  columns="2" columnClasses="label,value" style="width:30%">
+                <f:facet name="header">
+                   
+                </f:facet>
+ 
+                <h:outputText value="Review Id"  style="width:10%"/>
+                <h:outputText value="#{outputTableEntry.unique_id}" />
+ 
+                <h:outputText value="Sentence Id"  style="width:10%"/>
+                <h:outputText value="#{outputTableEntry.sentence_id}" />
+ 
+               		</p:panelGrid>				
+				</p:rowExpansion>
+			</p:dataTable>
 
 						<p:dialog header="Review information" widgetVar="reviewDialog"
 							modal="true" showEffect="fade" hideEffect="fade"

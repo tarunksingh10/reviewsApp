@@ -48,38 +48,41 @@
         </style>
     </ui:define>
 
+ 
     <ui:define name="content">
         <div class="Container100">
             <div class="ContainerIndent">
+            <h:form id="form" enctype="multipart/form-data">
+            <p:growl id="messages" showDetail="true" />
                 <div class="EmptyBox20"></div>
 
                 <div class="Container25 Responsive">
                     <div class="ContainerIndent">
-                        <p:panel style="min-height: 300px;">
+                       <!--  <p:panel style="min-height: 300px;">
                             <i class="icon-user-2 Fs50 Fleft Wid25 hardblue TexAlCenter"></i>
-                            <div class="Fs24 Fright MarTop10 leaden Wid70"><span class="hardblue"></span> Welcome</div>
-                            <div class="Fs12 Fright leaden Wid70">You have <span class="red">350 total reviews</span> <span class="red"></span> !</div>
+                            <div class="Fs24 Fright MarTop10 leaden Wid70"><span class="hardblue">Walter White</span>, Welcome</div>
+                            <div class="Fs12 Fright leaden Wid70">You have <span class="red">3 unread messages</span> and <span class="red"> 32 tasks</span> !</div>
                             <div class="EmptyBox10"></div>
                             <p:separator styleClass="Wid100"></p:separator>
                             <div class="EmptyBox10"></div>
                             <div class="Fs16 Fright">
-                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Negative (32)</i></a>
-                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Positive (3)</i></a>
-                               <!--  <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> Settings</i></a> -->
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Tasks (32)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Messages (3)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> Settings</i></a>
                             </div>
                             <div class="EmptyBox10"></div>
                             <p:separator styleClass="Wid100"></p:separator>
                             <div class="EmptyBox10"></div>
-                            <i class=" MarRight10 Fs14 Fright"> </i>
+                            <i class="icon-key softgray MarRight10 Fs14 Fright"> Your Last Login - 18.08.2014, 18:30</i>
                             <div class="EmptyBox10"></div>
                             <p:separator styleClass="Wid100"></p:separator>
 
-                        </p:panel>
+                        </p:panel> -->
                     </div>
                 </div>
 
-                <div class="Container25 Responsive">
-                    <!-- <div class="ContainerIndent">
+              <!--   <div class="Container25 Responsive">
+                    <div class="ContainerIndent">
                         <p:panel style="min-height: 300px;">
                             <div class="Container">
                                 <i class=" icon-data-science-inv Fs50 Fleft Wid25 orange TexAlCenter"></i>
@@ -96,46 +99,50 @@
                                 <a href="#" class="DispInlBlock Fs14 Fright MarRight10"><i class="icon-doc-1 orange"> Get Full Report</i></a>
                             </div>
                         </p:panel>
-                    </div> -->
-                </div>
+                    </div>
+                </div> -->
 
-                <div class="Container25 Responsive">
-                   <!--  <div class="ContainerIndent">
+                <div class="Container50 Responsive">
+                    <div class="ContainerIndent">
                         <p:panel style="min-height: 300px;">
                             <div class="Container">
-                                <i class="icon-rocket Fs50 Fleft Wid25 red TexAlCenter"></i>
-                                <div class="Fs24 Fright MarTop10 leaden Wid70">Sales Report</div>
-                                <div class="Fs18 Fright leaden Wid70">Totally <span class="red">$ 132.875,45</span></div>
+                                <i class="icon-upload-cloud Fs50 Fleft Wid25 red TexAlCenter"></i>
+                                <div class="Fs24 Fright MarTop10 leaden Wid70">Upload Your Data</div>
+                                <!-- <div class="Fs18 Fright leaden Wid70">Totally <span class="red">$ 132.875,45</span></div> -->
                                 <div class="EmptyBox10"></div>
                                 <p:separator styleClass="Wid100"></p:separator>
-                                <div class="EmptyBox10"></div>
+                               <!--  <div class="EmptyBox10"></div>
                                 <div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">4th Quarter<br/><span class="Fs20 orange"></span></div>
                                 <div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">3rd Quarter<br/><span class="Fs20 orange">$13.760</span></div>
                                 <div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">2nd Quarter<br/><span class="Fs20 red">$23.567</span></div>
                                 <div class="Fs12 Fright leaden Wid50 TexAlCenter Responsive">1st Quarter<br/><span class="Fs20 hardblue">$2.370</span></div>
-                                <div class="EmptyBox10"></div>
+                                <div class="EmptyBox10"></div> -->
+                 <div align="center">               
+                               
+       <p:fileUpload fileUploadListener="#{outputTableView.handleFileUpload}" mode="advanced" dragDropSupport="true" style="align:center" 
+                          update="messages"  allowTypes="/(\.|\/)(doc|docx|xls|xlsx|pdf)$/" />
+ 
+</div>
                                 <p:separator styleClass="Wid100"></p:separator>
-                                <a href="#" class="DispInlBlock Fs14 Fright MarRight10"><i class="icon-doc-1 orange"> Get Full Report</i></a>
+                               <!--  <a href="#" class="DispInlBlock Fs14 Fright MarRight10"><i class="icon-doc-1 orange"> Get Full Report</i></a> -->
                             </div>
                         </p:panel>
-                    </div> -->
+                    </div>
                 </div>
 
-                <div class="Container25 Responsive">
-                   <!--  <div class="ContainerIndent">
-                        <p:panel style="min-height:300px">
-                            <div class="Fs24 MarTop10 leaden Wid100 TexAlCenter">Customer Report</div>
-                            <p:chart type="pie" model="#{chartView.pieModel}" style="height:200px" responsive="true"/>
-                        </p:panel>
-                    </div> -->
-                </div>
+                
 
                 <div class="EmptyBox10"></div>
+                
+                </h:form>
             </div>
+            
+            
         </div>
 
        
 
             </ui:define>
+         
 
 </ui:composition>
