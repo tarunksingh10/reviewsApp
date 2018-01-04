@@ -69,6 +69,7 @@ public class OutputTableView implements Serializable {
 	    }
 	 
 	 public void handleFileUpload(FileUploadEvent event) {
+		 System.out.println("data has been uploaded");
 	        FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }

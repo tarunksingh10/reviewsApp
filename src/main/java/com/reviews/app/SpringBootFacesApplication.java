@@ -4,21 +4,22 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.faces.application.ProjectStage;
+import javax.faces.webapp.FacesServlet;
+import javax.servlet.DispatcherType;
 import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.HandlesTypes;
 
 import org.apache.catalina.Context;
-import org.primefaces.util.Constants;
+import org.primefaces.webapp.filter.FileUploadFilter;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.web.NonEmbeddedServletContainerFactory;
@@ -52,7 +53,7 @@ public class SpringBootFacesApplication extends SpringBootServletInitializer {
 		return configurer;
 	}
 
-	@Bean
+/*	@Bean
 	public ServletContextInitializer servletContextCustomizer() {
 		return new ServletContextInitializer() {
 			@Override
@@ -64,7 +65,37 @@ public class SpringBootFacesApplication extends SpringBootServletInitializer {
 				sc.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", "true");
 			}
 		};
-	}
+	}*/
+	
+	
+	 @Bean
+	    public ServletContextInitializer servletContextInitializer() {
+	        return servletContext -> {
+	            servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+	            servletContext.setInitParameter("primefaces.THEME", "sentinel");
+	            servletContext.setInitParameter("primefaces.CLIENT_SIDE_VALIDATION", Boolean.TRUE.toString());
+	            servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", Boolean.TRUE.toString());
+	            servletContext.setInitParameter("primefaces.FONT_AWESOME", Boolean.TRUE.toString());
+	            servletContext.setInitParameter("primefaces.UPLOADER", "commons");
+	        };
+	    }
+	
+	 @Bean
+	    public ServletRegistrationBean facesServletRegistraiton() {
+	        ServletRegistrationBean registration = new ServletRegistrationBean(new FacesServlet(), new String[]{"*.jsf"});
+	        registration.setName("Faces Servlet");
+	        registration.setLoadOnStartup(1);
+	        return registration;
+	    }
+	 
+	@Bean
+    public FilterRegistrationBean facesUploadFilterRegistration() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new FileUploadFilter(), facesServletRegistraiton());
+        registrationBean.setName("PrimeFaces FileUpload Filter");
+        registrationBean.addUrlPatterns("/*");
+        registrationBean.setDispatcherTypes(DispatcherType.FORWARD, DispatcherType.REQUEST);
+        return registrationBean;
+    }
 
 	/**
 	 * This bean is only needed when running with embedded Tomcat.
