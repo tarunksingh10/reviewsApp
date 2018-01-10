@@ -3,12 +3,12 @@ package com.reviews.app.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
-import org.apache.commons.lang3.StringUtils;
 
 @Data
 public class OutputTable implements Serializable {
@@ -19,20 +19,20 @@ public class OutputTable implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String category;
-	private String City;
-	private String Sentiment_y;
-	private String Sentiment_x;
-	private String Verbatim;
-	private String Sentence;
-	private String Source;
+	private String city;
+	private String sentiment_y;
+	private String sentiment_x;
+	private String verbatim;
+	private String sentence;
+	private String source;
 	private String sentence_id;
-	private String L2;
-	private String L3;
-	private String L0;
-	private String L1;
-	private Date Date;
-	private String Property;
-	private String Unique_id;
+	private String l2;
+	private String l3;
+	private String l0;
+	private String l1;
+	private Date date;
+	private String property;
+	private String unique_id;
 	private String feedback;
 	private boolean correctCategory;
 	
@@ -70,20 +70,20 @@ public class OutputTable implements Serializable {
 			java.util.Date date, String property, String unique_id,String setenceShort,String reviewShort) {
 		super();
 		this.category = category;
-		City = city;
-		Sentiment_y = sentiment_y;
-		Sentiment_x = sentiment_x;
-		Verbatim = verbatim;
-		Sentence = sentence;
-		Source = source;
+		city = city;
+		sentiment_y = sentiment_y;
+		sentiment_x = sentiment_x;
+		verbatim = verbatim;
+		sentence = sentence;
+		source = source;
 		this.sentence_id = sentence_id;
-		L2 = l2;
-		L3 = l3;
-		L0 = l0;
-		L1 = l1;
-		Date = date;
-		Property = property;
-		Unique_id = unique_id;
+		l2 = l2;
+		l3 = l3;
+		l0 = l0;
+		l1 = l1;
+		date = date;
+		property = property;
+		unique_id = unique_id;
 		this.setenceShort=setenceShort;
 		this.reviewShort=reviewShort;
 	}
@@ -92,7 +92,7 @@ public class OutputTable implements Serializable {
 	
 	public String getSetenceShort() {
 		
-		String setenceShort  = !StringUtils.isEmpty(this.Sentence) ? StringUtils.substring(this.Sentence,0,50).concat("...") : this.Sentence;
+		String setenceShort  = !StringUtils.isEmpty(this.sentence) ? StringUtils.substring(this.sentence,0,50).concat("...") : this.sentence;
 		
 		
 		return setenceShort=setenceShort;
@@ -108,7 +108,7 @@ public class OutputTable implements Serializable {
 
 	public String getReviewShort() {
 		
-		String reviewShort  = !StringUtils.isEmpty(this.Verbatim) ? StringUtils.substring(this.Verbatim,0,50).concat("...") : this.Verbatim;
+		String reviewShort  = !StringUtils.isEmpty(this.verbatim) ? StringUtils.substring(this.verbatim,0,50).concat("...") : this.verbatim;
 		
 		
 		return reviewShort=reviewShort;
