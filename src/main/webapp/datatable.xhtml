@@ -29,7 +29,7 @@
 							rowsPerPageTemplate="25,50,75,100"
 							emptyMessage="No details found with given criteria" reflow="true"
 							widgetVar="reviewTable" resizableColumns="false"
-							rowStyleClass="#{outputTableEntry.sentiment_x eq 'Negative' ? 'errorStyle' : null}"
+							rowStyleClass="#{outputTableEntry.sentiment_text eq 'Negative' ? 'errorStyle' : null}"
 							stickyHeader="false" editable="true" rowIndexVar="rowIdx"
 							scrollable="true">
 
@@ -72,8 +72,8 @@
             <p:rowToggler  />
         </p:column>
 							<p:column headerText="Sentiment"
-								sortBy="#{outputTableEntry.sentiment_x}" style="width:85px" >
-								<h:outputText value="#{outputTableEntry.sentiment_x}" />
+								sortBy="#{outputTableEntry.sentiment_text}" style="width:85px" >
+								<h:outputText value="#{outputTableEntry.sentiment_text}" />
 
 							</p:column>
 
@@ -102,7 +102,7 @@
 							>
 								
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
-								 <pe:tooltip for="text1" value="#{outputTableEntry.verbatim}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
+								 <pe:tooltip for="text1" value="#{outputTableEntry.review}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
 							</p:column>
 
 							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" filterBy="#{outputTableEntry.l0}" filterStyle="width:55px" 
@@ -133,9 +133,9 @@
 
 
 							<p:column headerText="Hotel" resizable="true"
-								sortBy="#{outputTableEntry.property}" 
-								filterBy="#{outputTableEntry.property}" filterStyle="width:50px">
-								<h:outputText value="#{outputTableEntry.property}"  />
+								sortBy="#{outputTableEntry.hotel}" 
+								filterBy="#{outputTableEntry.hotel}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.hotel}"  />
 
 							</p:column>
 
@@ -196,7 +196,7 @@
 									rendered="#{not empty outputTableView.selectedOutputTableEntry}">
 									<h:outputText value="Sentiment:" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.sentiment_x}" />
+										value="#{outputTableView.selectedOutputTableEntry.sentiment_text}" />
 
 									<h:outputText value="Category" />
 									<h:outputText
@@ -206,13 +206,13 @@
 									<h:outputText
 										value="#{outputTableView.selectedOutputTableEntry.city}" />
 
-									<h:outputText value="Property" />
+									<h:outputText value="hotel" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.property}" />
+										value="#{outputTableView.selectedOutputTableEntry.hotel}" />
 
 									<h:outputText value="Review-Text" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.verbatim}" />
+										value="#{outputTableView.selectedOutputTableEntry.review}" />
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>
