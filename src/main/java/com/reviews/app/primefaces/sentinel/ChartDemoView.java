@@ -45,14 +45,11 @@ import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.HorizontalBarChartModel;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
-import org.primefaces.model.chart.LinearAxis;
 import org.primefaces.model.chart.MeterGaugeChartModel;
 import org.primefaces.model.chart.OhlcChartModel;
 import org.primefaces.model.chart.OhlcChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
-import com.reviews.app.models.OutputTable;
-import com.reviews.app.models.OutputTableView;
 import com.reviews.app.service.ReviewService;
 
 @ManagedBean(name = "chartDemoView")
@@ -83,6 +80,7 @@ public class ChartDemoView implements Serializable {
     private BarChartModel animatedModel2;
     private LineChartModel multiAxisModel;
     private LineChartModel dateModel;
+   // private HorizontalBarChartModel horizontalBarModel;
 
     
     @ManagedProperty("#{reviewService}")
@@ -245,6 +243,7 @@ public class ChartDemoView implements Serializable {
         Axis yAxis = lineModel1.getAxis(AxisType.Y);
         yAxis.setMin(0);
         yAxis.setMax(10);
+        yAxis.setLabel("No of reviews");
         lineModel1.setExtender("skinChart");
         
         lineModel2 = initCategoryModel();
@@ -253,9 +252,11 @@ public class ChartDemoView implements Serializable {
         lineModel2.setShowPointLabels(true);
         lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Years"));
         yAxis = lineModel2.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Months");
         yAxis.setMin(0);
         yAxis.setMax(200);
+        
+      //  yAxis.setLabel("Months");
         
         zoomModel = initLinearModel();
         zoomModel.setTitle("Zoom");
@@ -309,20 +310,20 @@ public class ChartDemoView implements Serializable {
         BarChartModel model = new BarChartModel();
 
         ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 120);
-        boys.set("2005", 100);
-        boys.set("2006", 44);
-        boys.set("2007", 150);
-        boys.set("2008", 25);
+        boys.setLabel("Positive");
+        boys.set("Hydrabad", 120);
+        boys.set("Banglore", 100);
+        boys.set("Pune", 44);
+        boys.set("Goa", 150);
+        boys.set("Mumbai", 25);
 
         ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 135);
-        girls.set("2008", 120);
+        girls.setLabel("Negative");
+        girls.set("Hydrabad", 52);
+        girls.set("Banglore", 60);
+        girls.set("Pune", 110);
+        girls.set("Goa", 135);
+        girls.set("Mumbai", 120);
 
         model.addSeries(boys);
         model.addSeries(girls);
@@ -338,14 +339,14 @@ public class ChartDemoView implements Serializable {
     private void createBarModel() {
         barModel = initBarModel();
         
-        barModel.setTitle("Bar Chart");
+        barModel.setTitle("City wise Review");
         barModel.setLegendPosition("ne");
         
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Gender");
+        xAxis.setLabel("City");
         
         Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Births");
+        yAxis.setLabel("Review");
         yAxis.setMin(0);
         yAxis.setMax(200);
         
@@ -356,35 +357,35 @@ public class ChartDemoView implements Serializable {
         horizontalBarModel = new HorizontalBarChartModel();
 
         ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 50);
-        boys.set("2005", 96);
-        boys.set("2006", 44);
-        boys.set("2007", 55);
-        boys.set("2008", 25);
+        boys.setLabel("Positive");
+        boys.set("Bathroom", 50);
+        boys.set("Service", 96);
+        boys.set("Rooms", 44);
+        boys.set("Food", 55);
+        boys.set("Price", 25);
 
         ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 82);
-        girls.set("2007", 35);
-        girls.set("2008", 120);
+        girls.setLabel("Negative");
+        girls.set("Bathroom", 52);
+        girls.set("Service", 60);
+        girls.set("Rooms", 82);
+        girls.set("Food", 35);
+        girls.set("Price", 120);
 
         horizontalBarModel.addSeries(boys);
         horizontalBarModel.addSeries(girls);
         
-        horizontalBarModel.setTitle("Horizontal and Stacked");
+       // horizontalBarModel.setTitle("Horizontal and Stacked");
         horizontalBarModel.setLegendPosition("e");
         horizontalBarModel.setStacked(true);
         
         Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
-        xAxis.setLabel("Births");
+        xAxis.setLabel("No of reviews");
         xAxis.setMin(0);
         xAxis.setMax(200);
         
         Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Gender");        
+        yAxis.setLabel("Categories");        
     }
         
     private void createCombinedModel() {
@@ -455,16 +456,16 @@ public class ChartDemoView implements Serializable {
         multiAxisModel.getAxes().put(AxisType.X2, new CategoryAxis("Period"));
         
         Axis yAxis = multiAxisModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Birth");
+        yAxis.setLabel("Reviews");
         yAxis.setMin(0);
         yAxis.setMax(200);
                 
-        Axis y2Axis = new LinearAxis("Number");
+        /*Axis y2Axis = new LinearAxis("Number");
         y2Axis.setMin(0);
         y2Axis.setMax(200);
         
         multiAxisModel.getAxes().put(AxisType.Y2, y2Axis);
-        multiAxisModel.setExtender("skinMultiAxis");
+        */multiAxisModel.setExtender("skinMultiAxis");
     }
         
     private void createOhlcModels() {
@@ -504,12 +505,13 @@ public class ChartDemoView implements Serializable {
     private void createBubbleModels(){
         bubbleModel1 = initBubbleModel();
         bubbleModel1.setTitle("Bubble Chart");
-        bubbleModel1.getAxis(AxisType.X).setLabel("Price");
+        bubbleModel1.getAxis(AxisType.X).setLabel("Negiative comments by %");
         Axis yAxis = bubbleModel1.getAxis(AxisType.Y);
         yAxis.setMin(0);
         yAxis.setMax(250);
-        yAxis.setLabel("Labels");
+        yAxis.setLabel("Detractor");
         bubbleModel1.setExtender("skinBubble");
+      //  bubbleModel1.getAxis(AxisType.Y).setTickAngle(30);
         
         bubbleModel2 = initBubbleModel();
         bubbleModel2.setTitle("Custom Options");
@@ -526,13 +528,13 @@ public class ChartDemoView implements Serializable {
     private BubbleChartModel initBubbleModel(){
         BubbleChartModel model = new BubbleChartModel();
         
-        model.add(new BubbleChartSeries("Acura", 70, 183,55));
-        model.add(new BubbleChartSeries("Alfa Romeo", 45, 92, 36));
-        model.add(new BubbleChartSeries("AM General", 24, 104, 40));
-        model.add(new BubbleChartSeries("Bugatti", 50, 123, 60));
-        model.add(new BubbleChartSeries("BMW", 15, 89, 25));
-        model.add(new BubbleChartSeries("Audi", 40, 180, 80));
-        model.add(new BubbleChartSeries("Aston Martin", 70, 70, 48));
+        model.add(new BubbleChartSeries("Room", 70, 93,55));
+       // model.add(new BubbleChartSeries("View", 45, 92, 36));
+        model.add(new BubbleChartSeries("Price", 24, 39, 40));
+        model.add(new BubbleChartSeries("Location", 50, 50, 60));
+        model.add(new BubbleChartSeries("Bathroom", 15, 89, 25));
+        model.add(new BubbleChartSeries("Phone", 40, 100, 80));
+       // model.add(new BubbleChartSeries("Aston Martin", 70, 70, 48));
         
         return model;
     }
@@ -541,7 +543,7 @@ public class ChartDemoView implements Serializable {
         LineChartModel model = new LineChartModel();
 
         LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
+        series1.setLabel("Positive");
 
         series1.set(1, 2);
         series1.set(2, 1);
@@ -550,7 +552,7 @@ public class ChartDemoView implements Serializable {
         series1.set(5, 8);
 
         LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
+        series2.setLabel("Negative");
 
         series2.set(1, 6);
         series2.set(2, 3);
@@ -619,13 +621,13 @@ public class ChartDemoView implements Serializable {
         DonutChartModel model = new DonutChartModel();
         
         Map<String, Number> circle1 = new LinkedHashMap<String, Number>();
-        circle1.put("Brand 1", 150);
-        circle1.put("Brand 2", 400);
-        circle1.put("Brand 3", 200);
-        circle1.put("Brand 4", 10);
+        circle1.put("Bathroom", 150);
+        circle1.put("Service", 400);
+        circle1.put("Room", 200);
+        circle1.put("Amennities", 10);
         model.addCircle(circle1);
         
-        Map<String, Number> circle2 = new LinkedHashMap<String, Number>();
+       /* Map<String, Number> circle2 = new LinkedHashMap<String, Number>();
         circle2.put("Brand 1", 540);
         circle2.put("Brand 2", 125);
         circle2.put("Brand 3", 702);
@@ -637,7 +639,7 @@ public class ChartDemoView implements Serializable {
         circle3.put("Brand 2", 325);
         circle3.put("Brand 3", 402);
         circle3.put("Brand 4", 421);
-        model.addCircle(circle3);
+        model.addCircle(circle3);*/
         
         return model;
     }

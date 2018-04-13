@@ -278,46 +278,107 @@
     <ui:define name="content">
 
         <div class="Container50 Responsive100 NoIndent">
+        
+        
+       
+       
+        <!-- <div class="ContainerIndent">
+                 <p:panel>
+                            <i class="icon-user-2 Fs50 Fleft Wid25 hardblue TexAlCenter"></i>
+                            <div class="Fs24 Fright MarTop10 leaden Wid70"><span class="hardblue"></span> Welcome</div>
+                            <div class="Fs12 Fright leaden Wid70">You have <span class="red">350 total reviews</span> <span class="red"></span> !</div>
+                            <div class="EmptyBox10"></div>
+                            <p:separator styleClass="Wid100"></p:separator>
+                            <div class="EmptyBox10"></div>
+                            <div class="Fs16 Fright">
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Negative (32)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Positive (3)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> Settings</i></a>
+                            </div>
+                            <div class="EmptyBox10"></div>
+                            <p:separator styleClass="Wid100"></p:separator>
+                            <div class="EmptyBox10"></div>
+                            <i class=" MarRight10 Fs14 Fright"> </i>
+                            <div class="EmptyBox10"></div>
+                            <p:separator styleClass="Wid100"></p:separator>
+
+                        </p:panel>
+            </div>
+                    --> 
+                                       
+                       
+                
+              <div class="ContainerIndent">
+                 <p:panel style="min-height: 375px;">
+                            <i class="icon-user-2 Fs50 Fleft Wid25 hardblue TexAlCenter"></i>
+                            <div class="Fs24 Fright MarTop10 leaden Wid70"><span class="hardblue"></span> Welcome</div>
+                            <div class="Fs12 Fright leaden Wid70">You have <span class="red">291 total reviews</span> <span class="red"></span> !</div>
+                            <div class="EmptyBox10"></div>
+                            <p:separator styleClass="Wid100"></p:separator>
+                            <div class="EmptyBox10"></div>
+                            <div class="Fs16 Fright">
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Negative (147)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Positive (144)</i></a>
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> More</i></a>
+                            </div>
+                            <div class="EmptyBox10"></div>
+                            <p:separator styleClass="Wid100"></p:separator>
+                            <div class="EmptyBox10"></div>
+                            <i class=" MarRight10 Fs14 Fright"> </i>
+                            <div class="EmptyBox10"></div>
+                           
+
+                        </p:panel>
+            </div>
+
 
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Linear Chart</h2>
+                    <h2 class="BigTopic TexAlCenter">% of Comments</h2>
                     <p:chart id="line" type="line" model="#{chartDemoView.lineModel1}" responsive="true"/>
                 </p:panel>
             </div>
 
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Bar Chart</h2>
+                    <h2 class="BigTopic TexAlCenter">City wise review</h2>
                     <p:chart id="bar" type="bar" model="#{chartDemoView.barModel}" responsive="true"/>
                 </p:panel>
             </div>
 
-            <div class="ContainerIndent">
+           <!--  <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Area Chart</h2>
                     <p:chart id="area" type="line" model="#{chartDemoView.areaModel}" responsive="true" />
                 </p:panel>
-            </div>
+            </div> -->
 
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Bubble Chart</h2>
+                    <h2 class="BigTopic TexAlCenter">Hotel Ranking</h2>
                     <p:chart id="bubble" type="bubble" model="#{chartDemoView.bubbleModel1}" responsive="true"/>
                 </p:panel>
             </div>
 
-            <div class="ContainerIndent">
+           <!--  <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Zoom Chart</h2>
                     <p:chart id="date" type="line" model="#{chartDemoView.dateModel}" responsive="true"/>
                 </p:panel>
-            </div>
+            </div> -->
         </div>
 
         <!-- -->
 
         <div class="Container50 Responsive100 NoIndent">
+        
+        <div class="ContainerIndent">
+                <p:panel>
+                    <h2 class="BigTopic TexAlCenter">Negative comment category</h2>
+                    <p:chart id="bar1" type="bar" model="#{chartDemoView.horizontalBarModel}" responsive="true"/>
+                </p:panel>
+            </div>
+        
             <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Reviews</h2>
@@ -327,22 +388,22 @@
 
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Donut Chart</h2>
+                    <h2 class="BigTopic TexAlCenter">Top 5 (-)Categories</h2>
                     <p:chart id="donut" type="donut" model="#{chartDemoView.donutModel1}" responsive="true" />
                 </p:panel>
             </div>
 
-            <div class="ContainerIndent">
+            <!-- <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Bar And Line Chart</h2>
                     <p:chart id="combined" type="bar" model="#{chartDemoView.combinedModel}" responsive="true" />
                 </p:panel>
-            </div>
+            </div> -->
 
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Multi Axis Chart</h2>
-                    <p:chart id="multiAxis" type="line" model="#{chartDemoView.multiAxisModel}" responsive="true"/>
+                    <h2 class="BigTopic TexAlCenter">Review addressed</h2>
+                   <p:chart id="multiAxis" type="line" model="#{chartDemoView.multiAxisModel}" responsive="true"/> 
                 </p:panel>
             </div>
         </div>
