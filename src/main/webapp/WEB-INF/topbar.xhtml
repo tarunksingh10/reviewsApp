@@ -3,7 +3,9 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:ps="http://primefaces.org/sentinel"
+    xmlns:p="http://primefaces.org/ui">
     
     
     <div id="layout-header" class="Unselectable fontRegular">
@@ -13,6 +15,13 @@
             <BR />
              <span class="Fs10 FontTitilliumSemiBoldItalic Fleft"><span class="softblue">Customer Experience Platform</span><span class="hardblue"></span></span>
         </a>
+        <ul id="sm-topmenu1">
+        <li style="margin-right: 10px;" class="Fleft BordRadHalf TexAlCenter"><a href="dashboard.jsf" class="white Unselectable"><i class="icon-home-outline"></i>Dashboard</a></li>
+        <li style="margin-right: 10px;" class="Fleft BordRadHalf TexAlCenter"><a href="datatable.jsf" class="white Unselectable"><i class="icon-table"></i>Reviews</a></li>
+        <li style="margin-right: 10px;" class="Fleft BordRadHalf TexAlCenter"><a href="empty-page.jsf" class="white Unselectable"><i class="icon-table"></i>Contact</a></li>
+        <li class="Fleft BordRadHalf TexAlCenter"><a href="empty-page.jsf" class="white Unselectable"><i class="icon-table"></i>Documentation</a></li>
+        </ul>
+       
     	<ul id="sm-topmenu" class="layout-header-widgets white Fs14">
     		<li class="Fleft BordRadHalf TexAlCenter"><i class="icon-user-male"></i>
     			<!-- <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
