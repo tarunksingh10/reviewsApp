@@ -45,7 +45,7 @@ public class LoginView implements Serializable {
 
 		if (username != null && username.equals("admin") && password != null && password.equals("admin")) {
 			message = "Logging In..";
-			return "datatable";
+			return "charts";
 		} else {
 			message = "Wrong credentials.";
 			return "login";
