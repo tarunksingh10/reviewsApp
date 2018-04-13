@@ -11,7 +11,7 @@
                 <h:form>
                     <p:dataGrid var="car" value="#{carsView.cars}" columns="3" layout="grid"
                                 rows="12" paginator="true" id="cars"
-                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" paginatorPosition="bottom"
                                 rowsPerPageTemplate="6,12,16">
 
                         <f:facet name="header">

@@ -3,9 +3,12 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="/WEB-INF/template.xhtml">
+                template="/WEB-INF/template.xhtml"
+                xmlns:pe="http://primefaces.org/ui/extensions">
 
     <ui:define name="head">
+    
+    <script src="https://www.gstatic.com/charts/loader.js"></script> 
         <script type="text/javascript">
             // Blue : #3E98D3  |  Red : #EF3F61  |  Green : #2BB673  |  Orange : #F15732
 
@@ -144,7 +147,7 @@
             function skinPie() {
                 this.cfg.shadow = false;
                 this.cfg.title = '';
-                this.cfg.seriesColors = ['#3E98D3', '#EF3F61', '#2BB673', '#F15732'];
+                this.cfg.seriesColors = ['#13ef84', '#ef131e', '#33ccff', '#9fadb5'];
                 this.cfg.grid = {
                     background: '#ffffff',
                     borderColor: '#ffffff',
@@ -317,7 +320,7 @@
         <div class="Container50 Responsive100 NoIndent">
             <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Pie Chart</h2>
+                    <h2 class="BigTopic TexAlCenter">Reviews</h2>
                     <p:chart id="pie" type="pie" model="#{chartDemoView.pieModel1}" responsive="true" />
                 </p:panel>
             </div>

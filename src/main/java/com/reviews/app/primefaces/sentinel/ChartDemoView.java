@@ -20,10 +20,15 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import lombok.Data;
 
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.Axis;
@@ -46,7 +51,13 @@ import org.primefaces.model.chart.OhlcChartModel;
 import org.primefaces.model.chart.OhlcChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
+import com.reviews.app.models.OutputTable;
+import com.reviews.app.models.OutputTableView;
+import com.reviews.app.service.ReviewService;
+
 @ManagedBean(name = "chartDemoView")
+@ViewScoped
+@Data
 public class ChartDemoView implements Serializable {
 
     private LineChartModel lineModel1;
@@ -73,6 +84,10 @@ public class ChartDemoView implements Serializable {
     private LineChartModel multiAxisModel;
     private LineChartModel dateModel;
 
+    
+    @ManagedProperty("#{reviewService}")
+	private ReviewService reviewService;
+    
     @PostConstruct
     public void init() {
         createLineModels();
@@ -556,14 +571,16 @@ public class ChartDemoView implements Serializable {
     }
 
     private void createPieModel1() {
+    	
+   Map<String, Integer> datamap=	this.reviewService.getDataForMap();
         pieModel1 = new PieChartModel();
         
-        pieModel1.set("Brand 1", 540);
-        pieModel1.set("Brand 2", 325);
-        pieModel1.set("Brand 3", 702);
-        pieModel1.set("Brand 4", 421);
+       // pieModel1.set("Brand 1", 540);
+        pieModel1.set("Positive", datamap.get("positive"));
+        pieModel1.set("Negative", datamap.get("negative"));
+       // pieModel1.set("Brand 4", 421);
         
-        pieModel1.setTitle("Simple Pie");
+        pieModel1.setTitle("Review categerization");
         pieModel1.setLegendPosition("w");
         pieModel1.setExtender("skinPie");
     }

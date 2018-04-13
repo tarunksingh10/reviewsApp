@@ -3,7 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml"
-	 xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 
 	<style type="text/css">
@@ -26,135 +26,120 @@
 							selection="#{outputTableView.selectedOutputTableEntry}"
 							rowKey="#{outputTableEntry.id}" rows="25" paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="25,50,75,100"
+							paginatorPosition="bottom" rowsPerPageTemplate="25,50,75,100"
 							emptyMessage="No details found with given criteria" reflow="true"
 							widgetVar="reviewTable" resizableColumns="false"
 							rowStyleClass="#{outputTableEntry.sentiment_text eq 'Negative' ? 'errorStyle' : null}"
 							stickyHeader="false" editable="true" rowIndexVar="rowIdx"
 							scrollable="true">
 
-							
-							
 
-							<f:facet name="header">Treebo reviews
+
+
+							<f:facet name="header"> <h1 class="TexAlCenter gray Fs10">
+                            <span class="white Fs27">Treebo Reviews</span>
+                        </h1>
 									<div align="right">
 									<h:outputText value="Download data" />
-									
-														
+
+
 									<h:commandLink>
 										<i class=" icon-file-excel"></i>
 										<p:dataExporter type="xls" target="singleDT"
 											fileName="Reviews" pageOnly="true" />
 									</h:commandLink>
-									
 
-									<!-- <h:commandLink>
-										<i class="icon-file-pdf"></i>
-										<p:dataExporter type="pdf" target="singleDT"
-											fileName="singleDT" pageOnly="true" />
-									</h:commandLink> -->
+
+
 								</div>
 
 							</f:facet>
-							 <!-- <p:column headerText="R. Id" style="width:30px"
-								>
-								<h:outputText value="#{outputTableEntry.unique_id}" />
+							
+
+							<p:column style="width:20px" exportable="false">
+								<p:rowToggler />
 							</p:column>
-
-
-							<p:column headerText="S. Id" style="width:30px"
-								
-								>
-								<h:outputText value="#{outputTableEntry.sentence_id}"/>
-							</p:column>  -->
-
-					<p:column style="width:20px" exportable="false">
-            <p:rowToggler  />
-        </p:column>
 							<p:column headerText="Sentiment"
-								sortBy="#{outputTableEntry.sentiment_text}" style="width:85px" >
+								sortBy="#{outputTableEntry.sentiment_text}" style="width:40px">
 								<h:outputText value="#{outputTableEntry.sentiment_text}" />
 
 							</p:column>
 
-							<p:column headerText="Sentence Text"
-								 style="width:120px" >
-								<h:outputText value="#{outputTableEntry.setenceShort}" id="sentence"/>
-								
-							
-       
-                         <pe:tooltip for="sentence" value="#{outputTableEntry.sentence}" header="Sentence Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
+							<p:column headerText="Sentence Text" style="width:120px">
+								<h:outputText value="#{outputTableEntry.setenceShort}"
+									id="sentence" />
+
+
+
+								<pe:tooltip for="sentence" value="#{outputTableEntry.sentence}"
+									header="Sentence Text"
+									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" />
 
 							</p:column>
-<p:column headerText="Rev. Date"
-								sortBy="#{outputTableEntry.date}" >
+							<p:column headerText="Rev. Date" style="width:65px"
+								sortBy="#{outputTableEntry.date}">
 								<h:outputText value="#{outputTableEntry.date}">
 									<f:convertDateTime pattern="MM/dd/yyyy" />
 								</h:outputText>
 							</p:column>
 
-							<p:column headerText="Rev. Src"
-								sortBy="#{outputTableEntry.source}" >
+							<p:column headerText="Rev. Src" style="width:75px"
+								sortBy="#{outputTableEntry.source}">
 								<h:outputText value="#{outputTableEntry.source}" />
 							</p:column>
 
-							<p:column headerText="Review Text" colspan="2"
-							>
-								
+							<p:column headerText="Review Text" style="width:120px">
+
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
-								 <pe:tooltip for="text1" value="#{outputTableEntry.review}" header="Review Text" styleClass="qtip qtip-yellow qtip-rounded qtip-shadow"/> 
+								<pe:tooltip for="text1" value="#{outputTableEntry.review}"
+									header="Review Text"
+									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" />
 							</p:column>
 
-							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" filterBy="#{outputTableEntry.l0}" filterStyle="width:55px" 
-								>
+							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" style="width:65px"
+								filterBy="#{outputTableEntry.l0}" filterStyle="width:55px">
 								<h:outputText value="#{outputTableEntry.l0}" />
 							</p:column>
 
-							<p:column headerText="L1" sortBy="#{outputTableEntry.l1}" filterBy="#{outputTableEntry.l1}"  filterStyle="width:50px"
-								>
-								<h:outputText value="#{outputTableEntry.l1}" />
-							</p:column>
+							
 
-							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}" filterBy="#{outputTableEntry.l2}"  filterStyle="width:50px"
-								>
-								<h:outputText value="#{outputTableEntry.l2}" />
-							</p:column>
-
-<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" filterBy="#{outputTableEntry.l3}"  filterStyle="width:50px"
-								>
+							<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" style="width:85px"
+								filterBy="#{outputTableEntry.l3}" filterStyle="width:50px">
 								<h:outputText value="#{outputTableEntry.l3}" />
 							</p:column>
 
-							
-							<p:column headerText="City" sortBy="#{outputTableEntry.city}" resizable="true" filterStyle="width:50px"
-								 filterBy="#{outputTableEntry.city}">
+
+							<p:column headerText="City" sortBy="#{outputTableEntry.city}" style="width:50px"
+								resizable="true" filterStyle="width:50px"
+								filterBy="#{outputTableEntry.city}">
 								<h:outputText value="#{outputTableEntry.city}" />
 							</p:column>
 
 
-							<p:column headerText="Hotel" resizable="true"
-								sortBy="#{outputTableEntry.hotel}" 
+							<p:column headerText="Property" resizable="true" style="width:85px"
+								sortBy="#{outputTableEntry.hotel}"
 								filterBy="#{outputTableEntry.hotel}" filterStyle="width:50px">
-								<h:outputText value="#{outputTableEntry.hotel}"  />
+								<h:outputText value="#{outputTableEntry.hotel}" />
 
 							</p:column>
 
-							<p:column headerText="Accu.?" title="Is category correct?" style="width:30px"
-								 
-								>
+							<p:column headerText="Accu.?" title="Is category correct?"
+								style="width:30px">
 								<h:selectBooleanCheckbox
-									value="#{outputTableEntry.correctCategory}" disabled="#{not outputTableEntry.editable}"/>
+									value="#{outputTableEntry.correctCategory}"
+									disabled="#{not outputTableEntry.editable}" />
 							</p:column>
 
-							<p:column headerText="Feedback" >
-								<h:outputText value="#{outputTableEntry.feedback}" 
+							<p:column headerText="Feedback" style="width:120px">
+								<h:outputText value="#{outputTableEntry.feedback}"
 									rendered="#{not outputTableEntry.editable}" />
 								<h:inputTextarea value="#{outputTableEntry.feedback}"
 									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
-							<p:column headerText="Action" style="width:70px" exportable="false">
-								<p:commandButton value="Edit"
+							<p:column headerText="Action" style="width:70px"
+								exportable="false">
+								<p:commandButton value="Feedback"
 									action="#{outputTableView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>
@@ -168,24 +153,37 @@
 									update=":form:selectedOutputTableEntry" value="View"
 									oncomplete="PF('reviewDialog').show()" />
 							</f:facet>
-							
-							
-					<p:rowExpansion>
-							
-							 <p:panelGrid  columns="2" columnClasses="label,value" style="width:30%">
-                <f:facet name="header">
-                   
-                </f:facet>
- 
-                <h:outputText value="Review Id"  style="width:10%"/>
-                <h:outputText value="#{outputTableEntry.unique_id}" />
- 
-                <h:outputText value="Sentence Id"  style="width:10%"/>
-                <h:outputText value="#{outputTableEntry.sentence_id}" />
- 
-               		</p:panelGrid>				
-				</p:rowExpansion>
-			</p:dataTable>
+
+
+							<p:rowExpansion>
+
+								<p:panelGrid columns="2" columnClasses="label,value"
+									style="width:30%">
+									<f:facet name="header">
+
+									</f:facet>
+
+									<h:outputText value="Review Id" style="width:10%" />
+									<h:outputText value="#{outputTableEntry.unique_id}" />
+
+									<h:outputText value="Sentence Id" style="width:10%" />
+									<h:outputText value="#{outputTableEntry.sentence_id}" />
+									
+									<h:outputText value="L1" style="width:10%" />
+									
+									
+								<h:outputText value="#{outputTableEntry.l1}" />
+						
+
+<h:outputText value="L2" style="width:10%" />
+							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}"
+								filterBy="#{outputTableEntry.l2}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.l2}" />
+							</p:column>
+
+								</p:panelGrid>
+							</p:rowExpansion>
+						</p:dataTable>
 
 						<p:dialog header="Review information" widgetVar="reviewDialog"
 							modal="true" showEffect="fade" hideEffect="fade"

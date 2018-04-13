@@ -1,11 +1,16 @@
 package com.reviews.app.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,8 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.reviews.app.models.OutputTable;
-
-import lombok.extern.slf4j.Slf4j;
 
 @ManagedBean(name = "reviewService")
 @ViewScoped
@@ -48,6 +51,50 @@ public class ReviewService {
 		}
 		log.info("Exit " + METHOD_NAME);
 		return getOutputTableList;
+	}
+	
+	
+	
+	public Map<String, Integer> getDataForMap() {
+
+		Map<String, Integer> positiveMap = new HashMap<String, Integer>();
+		Map<String, Integer> negativeMap = new HashMap<String, Integer>();
+		List<OutputTable> list = getOutputTableList();
+		Map<String, Integer> dataMap = new HashMap<String, Integer>();
+		int negative = 0;
+		int positive = 0;
+
+		for (OutputTable outputTable : list) {
+			String l0 = outputTable.getL0();
+
+			if (StringUtils.equalsIgnoreCase("Positive",
+					outputTable.getSentiment_text())) {
+				positive = positive + 1;
+
+				if (positiveMap.containsKey(l0)) {
+					int count = positiveMap.get(l0) + 1;
+					positiveMap.put(l0, count);
+
+				} else {
+					positiveMap.put(l0, 1);
+				}
+
+			} else {
+
+				negative = negative + 1;
+				if (negativeMap.containsKey(l0)) {
+					int count = negativeMap.get(l0) + 1;
+					negativeMap.put(l0, count);
+				} else {
+					negativeMap.put(l0, 1);
+				}
+			}
+		}
+
+		dataMap.put("negative", negative);
+		dataMap.put("positive", positive);
+		return dataMap;
+
 	}
 
 	public void updateOutputTableEntry(OutputTable selectedOutputTableEntry) {
