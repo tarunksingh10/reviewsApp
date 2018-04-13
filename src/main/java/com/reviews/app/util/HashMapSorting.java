@@ -1,18 +1,7 @@
 package com.reviews.app.util;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
-
 public class HashMapSorting {
-	public static void main(String args[]) throws ParseException {
+	/*public static void main(String args[]) throws ParseException {
 
 		HashMap<String, Integer> codenames = new HashMap<String, Integer>();
 		codenames.put("JDK 1.1.4", 1);
@@ -60,4 +49,4 @@ public class HashMapSorting {
 		// Read more:
 		// http://www.java67.com/2015/01/how-to-sort-hashmap-in-java-based-on.html#ixzz5C5BasdAh
 	}
-}
+*/}
