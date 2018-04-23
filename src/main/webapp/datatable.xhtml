@@ -76,19 +76,19 @@
 									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" />
 
 							</p:column>
-							<p:column headerText="Rev. Date" style="width:65px"
+							<p:column headerText="Date" style="width:65px"
 								sortBy="#{outputTableEntry.date}">
 								<h:outputText value="#{outputTableEntry.date}">
 									<f:convertDateTime pattern="MM/dd/yyyy" />
 								</h:outputText>
 							</p:column>
 
-							<p:column headerText="Rev. Src" style="width:75px"
+							<p:column headerText="Source" style="width:75px"
 								sortBy="#{outputTableEntry.source}">
 								<h:outputText value="#{outputTableEntry.source}" />
 							</p:column>
 
-							<p:column headerText="Review Text" style="width:120px">
+							<p:column headerText="Content" style="width:120px">
 
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
 								<pe:tooltip for="text1" value="#{outputTableEntry.review}"
@@ -139,7 +139,7 @@
 
 							<p:column headerText="Action" style="width:70px"
 								exportable="false">
-								<p:commandButton value="Feedback"
+								<p:commandButton value="Feedback" style="width:85px"
 									action="#{outputTableView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>

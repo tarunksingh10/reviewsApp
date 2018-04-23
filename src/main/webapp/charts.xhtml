@@ -319,7 +319,7 @@
                             <div class="Fs16 Fright">
                                 <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Negative (147)</i></a>
                                 <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Positive (144)</i></a>
-                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> More</i></a>
+                               <!--  <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> More</i></a> -->
                             </div>
                             <div class="EmptyBox10"></div>
                             <p:separator styleClass="Wid100"></p:separator>
@@ -353,12 +353,12 @@
                 </p:panel>
             </div> -->
 
-            <div class="ContainerIndent">
+            <!-- <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Hotel Ranking</h2>
                     <p:chart id="bubble" type="bubble" model="#{chartDemoView.bubbleModel1}" responsive="true"/>
                 </p:panel>
-            </div>
+            </div> -->
 
            <!--  <div class="ContainerIndent">
                 <p:panel>
@@ -374,15 +374,20 @@
         
         <div class="ContainerIndent">
                 <p:panel>
-                    <h2 class="BigTopic TexAlCenter">Negative comment category</h2>
+                    <h2 class="BigTopic TexAlCenter">Negative comments by category</h2>
                     <p:chart id="bar1" type="bar" model="#{chartDemoView.horizontalBarModel}" responsive="true"/>
                 </p:panel>
             </div>
         
             <div class="ContainerIndent">
-                <p:panel>
+                <!-- <p:panel>
                     <h2 class="BigTopic TexAlCenter">Reviews</h2>
                     <p:chart id="pie" type="pie" model="#{chartDemoView.pieModel1}" responsive="true" />
+                </p:panel> -->
+                
+                <p:panel>
+                    <h2 class="BigTopic TexAlCenter">Hotel Ranking</h2>
+                    <p:chart id="bubble" type="bubble" model="#{chartDemoView.bubbleModel1}" responsive="true"/>
                 </p:panel>
             </div>
 
@@ -400,12 +405,12 @@
                 </p:panel>
             </div> -->
 
-            <div class="ContainerIndent">
+            <!-- <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Review addressed</h2>
                    <p:chart id="multiAxis" type="line" model="#{chartDemoView.multiAxisModel}" responsive="true"/> 
                 </p:panel>
-            </div>
+            </div> -->
         </div>
 
     </ui:define>

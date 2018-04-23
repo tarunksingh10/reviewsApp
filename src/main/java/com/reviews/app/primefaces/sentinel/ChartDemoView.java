@@ -251,6 +251,7 @@ public class ChartDemoView implements Serializable {
         lineModel2.setLegendPosition("e");
         lineModel2.setShowPointLabels(true);
         lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        
         yAxis = lineModel2.getAxis(AxisType.Y);
         yAxis.setLabel("Months");
         yAxis.setMin(0);
@@ -505,11 +506,11 @@ public class ChartDemoView implements Serializable {
     private void createBubbleModels(){
         bubbleModel1 = initBubbleModel();
         bubbleModel1.setTitle("Bubble Chart");
-        bubbleModel1.getAxis(AxisType.X).setLabel("Negiative comments by %");
+        bubbleModel1.getAxis(AxisType.X).setLabel("Negative comments by %");
         Axis yAxis = bubbleModel1.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(250);
-        yAxis.setLabel("Detractor");
+       // yAxis.setMax(250);
+        yAxis.setLabel("Detractor percentage");
         bubbleModel1.setExtender("skinBubble");
       //  bubbleModel1.getAxis(AxisType.Y).setTickAngle(30);
         
@@ -521,19 +522,20 @@ public class ChartDemoView implements Serializable {
         bubbleModel2.getAxis(AxisType.X).setTickAngle(-50);
         yAxis = bubbleModel2.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(250);
+        yAxis.setMax(100);
         yAxis.setTickAngle(50);
+        //yAxis.setLabel(label);
     }
     
     private BubbleChartModel initBubbleModel(){
         BubbleChartModel model = new BubbleChartModel();
         
-        model.add(new BubbleChartSeries("Room", 70, 93,55));
+        model.add(new BubbleChartSeries("Room", 70, 70,55));
        // model.add(new BubbleChartSeries("View", 45, 92, 36));
         model.add(new BubbleChartSeries("Price", 24, 39, 40));
         model.add(new BubbleChartSeries("Location", 50, 50, 60));
-        model.add(new BubbleChartSeries("Bathroom", 15, 89, 25));
-        model.add(new BubbleChartSeries("Phone", 40, 100, 80));
+        model.add(new BubbleChartSeries("Bathroom", 60, 60, 70));
+        model.add(new BubbleChartSeries("Phone", 40, 80, 80));
        // model.add(new BubbleChartSeries("Aston Martin", 70, 70, 48));
         
         return model;
