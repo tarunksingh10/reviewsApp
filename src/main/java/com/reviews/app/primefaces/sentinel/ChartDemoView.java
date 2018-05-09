@@ -530,12 +530,12 @@ public class ChartDemoView implements Serializable {
     private BubbleChartModel initBubbleModel(){
         BubbleChartModel model = new BubbleChartModel();
         
-        model.add(new BubbleChartSeries("Room", 70, 70,55));
+        model.add(new BubbleChartSeries("Treebo Sahara", 70, 70,80));
        // model.add(new BubbleChartSeries("View", 45, 92, 36));
-        model.add(new BubbleChartSeries("Price", 24, 39, 40));
-        model.add(new BubbleChartSeries("Location", 50, 50, 60));
-        model.add(new BubbleChartSeries("Bathroom", 60, 60, 70));
-        model.add(new BubbleChartSeries("Phone", 40, 80, 80));
+        model.add(new BubbleChartSeries("Treebo Elan", 24, 39, 70));
+        model.add(new BubbleChartSeries("Treebo Hive", 50, 50, 60));
+        model.add(new BubbleChartSeries("Treebo Edge", 60, 60, 70));
+        model.add(new BubbleChartSeries("Treebo mint", 40, 80, 80));
        // model.add(new BubbleChartSeries("Aston Martin", 70, 70, 48));
         
         return model;
@@ -627,6 +627,7 @@ public class ChartDemoView implements Serializable {
         circle1.put("Service", 400);
         circle1.put("Room", 200);
         circle1.put("Amennities", 10);
+        circle1.put("Front Desk", 150);
         model.addCircle(circle1);
         
        /* Map<String, Number> circle2 = new LinkedHashMap<String, Number>();

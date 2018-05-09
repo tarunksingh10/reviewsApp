@@ -519,7 +519,7 @@ label{font-weight:normal !important;}
     .ui-datatable .ui-datatable-even{background-color: #FBFCFD;}
 .ui-datatable:hover, .ui-datagrid:focus{border:solid 1px #27AAE1;}
     .ui-datatable .ui-datagrid-header,
-    .ui-datatable .ui-datatable-header,
+    .ui-datatable .ui-datatable-header {background:green !important;},
     .ui-datatable .ui-datatable-subtable-header,
     .ui-datatable .ui-datatable-summaryrow{border: solid 1px #175787; color: #ffffff; text-shadow: 0 -1px 0 #0A385E; margin:2px 2px 0px 2px;
                                      border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;

@@ -11,7 +11,13 @@
 	display: block;
 	width: 00px !important;
 	margin: auto;
-}
+};
+
+
+</style>
+
+<style type="text/css">
+.ui-datatable .ui-datatable-header { background: green !important;} 
 </style>
 
 
@@ -60,7 +66,7 @@
 								<p:rowToggler />
 							</p:column>
 							<p:column headerText="Sentiment"
-								sortBy="#{outputTableEntry.sentiment_text}" style="width:40px">
+								sortBy="#{outputTableEntry.sentiment_text}" style="width:65px">
 								<h:outputText value="#{outputTableEntry.sentiment_text}" />
 
 							</p:column>
@@ -71,9 +77,11 @@
 
 
 
-								<pe:tooltip for="sentence" value="#{outputTableEntry.sentence}"
+								<!-- <pe:tooltip for="sentence" value="#{outputTableEntry.sentence}"
 									header="Sentence Text"
-									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" />
+									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" /> -->
+									
+									<p:tooltip id="toolTipTrack" for="sentence" value="#{outputTableEntry.sentence}" style="max-width: 500px;  font-size: 15px;"/>  
 
 							</p:column>
 							<p:column headerText="Date" style="width:65px"
@@ -88,12 +96,14 @@
 								<h:outputText value="#{outputTableEntry.source}" />
 							</p:column>
 
-							<p:column headerText="Content" style="width:120px">
+							<p:column headerText="Rev. Text" style="width:120px">
 
 								<h:outputText value="#{outputTableEntry.reviewShort}" id="text1" />
-								<pe:tooltip for="text1" value="#{outputTableEntry.review}"
+								<!-- <pe:tooltip for="text1" value="#{outputTableEntry.review}"
 									header="Review Text"
-									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" />
+								    style="font-size: 25px;"/> -->
+								    
+								    <p:tooltip id="toolTipTrack2" for="text1" value="#{outputTableEntry.review}" style="max-width: 500px;  font-size: 15px;" />
 							</p:column>
 
 							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" style="width:65px"
@@ -123,23 +133,23 @@
 
 							</p:column>
 
-							<p:column headerText="Accu.?" title="Is category correct?"
+							<!-- <p:column headerText="Accu.?" title="Is category correct?"
 								style="width:30px">
 								<h:selectBooleanCheckbox
 									value="#{outputTableEntry.correctCategory}"
 									disabled="#{not outputTableEntry.editable}" />
 							</p:column>
-
-							<p:column headerText="Feedback" style="width:120px">
+ -->
+							<p:column headerText="Feedback" style="width:128px">
 								<h:outputText value="#{outputTableEntry.feedback}"
 									rendered="#{not outputTableEntry.editable}" />
 								<h:inputTextarea value="#{outputTableEntry.feedback}"
 									rendered="#{outputTableEntry.editable}" />
 							</p:column>
 
-							<p:column headerText="Action" style="width:70px"
+							<p:column headerText="Action" style="width:90px"
 								exportable="false">
-								<p:commandButton value="Feedback" style="width:85px"
+								<p:commandButton value="Feedback"
 									action="#{outputTableView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>

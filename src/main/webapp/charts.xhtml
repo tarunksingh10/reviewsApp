@@ -174,7 +174,7 @@
             function skinDonut() {
                 this.cfg.shadow = false;
                 this.cfg.title = '';
-                this.cfg.seriesColors = ['#3E98D3', '#EF3F61', '#2BB673', '#F15732'];
+                this.cfg.seriesColors = ['#3E98D3', '#EF3F61', '#2BB673', '#F15732','#FFCC33'];
                 this.cfg.grid = {
                     background: '#ffffff',
                     borderColor: '#ffffff',
@@ -308,7 +308,7 @@
                                        
                        
                 
-              <div class="ContainerIndent">
+             <!--  <div class="ContainerIndent">
                  <p:panel style="min-height: 375px;">
                             <i class="icon-user-2 Fs50 Fleft Wid25 hardblue TexAlCenter"></i>
                             <div class="Fs24 Fright MarTop10 leaden Wid70"><span class="hardblue"></span> Welcome</div>
@@ -319,7 +319,7 @@
                             <div class="Fs16 Fright">
                                 <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-briefcase hardblue"> Negative (147)</i></a>
                                 <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-bell-alt hardblue"> Positive (144)</i></a>
-                               <!--  <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> More</i></a> -->
+                                <a href="#" class="DispInlBlock Fleft Fs16 MarRight20"><i class="icon-cog-alt hardblue"> More</i></a>
                             </div>
                             <div class="EmptyBox10"></div>
                             <p:separator styleClass="Wid100"></p:separator>
@@ -330,12 +330,16 @@
 
                         </p:panel>
             </div>
-
+ -->
 
             <div class="ContainerIndent">
-                <p:panel>
+                <!-- <p:panel>
                     <h2 class="BigTopic TexAlCenter">% of Comments</h2>
                     <p:chart id="line" type="line" model="#{chartDemoView.lineModel1}" responsive="true"/>
+                </p:panel> -->
+                <p:panel>
+                    <h2 class="BigTopic TexAlCenter">Top 5 (-)Categories</h2>
+                    <p:chart id="donut" type="donut" model="#{chartDemoView.donutModel1}" responsive="true" />
                 </p:panel>
             </div>
 
@@ -391,12 +395,12 @@
                 </p:panel>
             </div>
 
-            <div class="ContainerIndent">
+            <!-- <div class="ContainerIndent">
                 <p:panel>
                     <h2 class="BigTopic TexAlCenter">Top 5 (-)Categories</h2>
                     <p:chart id="donut" type="donut" model="#{chartDemoView.donutModel1}" responsive="true" />
                 </p:panel>
-            </div>
+            </div> -->
 
             <!-- <div class="ContainerIndent">
                 <p:panel>
