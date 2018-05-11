@@ -10,8 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import lombok.Data;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -21,6 +19,8 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.primefaces.event.FileUploadEvent;
 
 import com.reviews.app.service.ReviewService;
+
+import lombok.Data;
 
 @ManagedBean(name = "outputTableView")
 @ViewScoped
@@ -38,7 +38,7 @@ public class OutputTableView implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		outputTableList = reviewService.getOutputTableList();
+		//outputTableList = reviewService.getOutputTableList();
 	}
 
 	public String editAction(OutputTable selectedOutputTableEntry) {
@@ -48,7 +48,7 @@ public class OutputTableView implements Serializable {
 
 	public String saveAction(OutputTable selectedOutputTableEntry) {
 		selectedOutputTableEntry.setEditable(false);
-		reviewService.updateOutputTableEntry(selectedOutputTableEntry);
+		//reviewService.updateOutputTableEntry(selectedOutputTableEntry);
 		return null;
 	}
 	

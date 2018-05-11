@@ -24,18 +24,39 @@
 
 	<ui:define name="content">
 		<div class="ContainerIndent">
+		<p:panel header="Search panel" style="display:block; text-align:center">
+		<div class="ContainerIndent">
+			<h:form>
+			<h:panelGroup style="display:block; text-align:center">
+				<h:outputText value="Hotel" ></h:outputText>
+					<p:inputText value="#{testingDisplayView.hotel}"></p:inputText>
+					
+				<h:outputText value="City" ></h:outputText>
+					<h:inputText value="#{testingDisplayView.city}"></h:inputText>
+				<h:outputText value="Source" ></h:outputText>
+					<h:inputText value="#{testingDisplayView.source}"></h:inputText>
+				<h:outputText value="Review from date" ></h:outputText>
+					<p:calendar id="button1" value="#{testingDisplayView.reviewFromDate}" pattern="yyyy-MM-dd" pages="2" showOn="button"></p:calendar>
+				
+				<h:outputText value="Review to date" ></h:outputText>
+					<p:calendar id="button2" value="#{testingDisplayView.reviewToDate}" pattern="yyyy-MM-dd" pages="2" showOn="button"></p:calendar>		
+					
+				<h:commandButton value="Submit" action="#{testingDisplayView.searchReviews()}"></h:commandButton>
+			</h:panelGroup>		
+			</h:form>
+		</div>	
+		</p:panel>
 			<p:panel>
 				<div class="ContainerIndent">
 					<h:form id="form">
 						<p:dataTable id="singleDT" var="outputTableEntry"
-							value="#{outputTableView.outputTableList}" selectionMode="single"
-							selection="#{outputTableView.selectedOutputTableEntry}"
+							value="#{testingDisplayView.outputTableList}" selectionMode="single"
+							selection="#{testingDisplayView.selectedOutputTableEntry}"
 							rowKey="#{outputTableEntry.id}" rows="25" paginator="true"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 							paginatorPosition="bottom" rowsPerPageTemplate="25,50,75,100"
 							emptyMessage="No details found with given criteria" reflow="true"
 							widgetVar="reviewTable" resizableColumns="false"
-							rowStyleClass="#{outputTableEntry.sentiment_text eq 'Negative' ? 'errorStyle' : null}"
 							stickyHeader="false" editable="true" rowIndexVar="rowIdx"
 							scrollable="true">
 
@@ -54,9 +75,6 @@
 										<p:dataExporter type="xls" target="singleDT"
 											fileName="Reviews" pageOnly="true" />
 									</h:commandLink>
-
-
-
 								</div>
 
 							</f:facet>
@@ -65,28 +83,10 @@
 							<p:column style="width:20px" exportable="false">
 								<p:rowToggler />
 							</p:column>
-							<p:column headerText="Sentiment"
-								sortBy="#{outputTableEntry.sentiment_text}" style="width:65px">
-								<h:outputText value="#{outputTableEntry.sentiment_text}" />
 
-							</p:column>
-
-							<p:column headerText="Sentence Text" style="width:120px">
-								<h:outputText value="#{outputTableEntry.setenceShort}"
-									id="sentence" />
-
-
-
-								<!-- <pe:tooltip for="sentence" value="#{outputTableEntry.sentence}"
-									header="Sentence Text"
-									styleClass="qtip qtip-blue qtip-rounded qtip-shadow" /> -->
-									
-									<p:tooltip id="toolTipTrack" for="sentence" value="#{outputTableEntry.sentence}" style="max-width: 500px;  font-size: 15px;"/>  
-
-							</p:column>
 							<p:column headerText="Date" style="width:65px"
-								sortBy="#{outputTableEntry.date}">
-								<h:outputText value="#{outputTableEntry.date}">
+								sortBy="#{outputTableEntry.review_Date}">
+								<h:outputText value="#{outputTableEntry.review_Date}">
 									<f:convertDateTime pattern="MM/dd/yyyy" />
 								</h:outputText>
 							</p:column>
@@ -106,18 +106,10 @@
 								    <p:tooltip id="toolTipTrack2" for="text1" value="#{outputTableEntry.review}" style="max-width: 500px;  font-size: 15px;" />
 							</p:column>
 
-							<p:column headerText="L0" sortBy="#{outputTableEntry.l0}" style="width:65px"
-								filterBy="#{outputTableEntry.l0}" filterStyle="width:55px">
-								<h:outputText value="#{outputTableEntry.l0}" />
+							<p:column headerText="L0" sortBy="#{outputTableEntry.rating}" style="width:65px"
+								filterBy="#{outputTableEntry.rating}" filterStyle="width:55px">
+								<h:outputText value="#{outputTableEntry.rating}" />
 							</p:column>
-
-							
-
-							<p:column headerText="L3" sortBy="#{outputTableEntry.l3}" style="width:85px"
-								filterBy="#{outputTableEntry.l3}" filterStyle="width:50px">
-								<h:outputText value="#{outputTableEntry.l3}" />
-							</p:column>
-
 
 							<p:column headerText="City" sortBy="#{outputTableEntry.city}" style="width:50px"
 								resizable="true" filterStyle="width:50px"
@@ -132,6 +124,66 @@
 								<h:outputText value="#{outputTableEntry.hotel}" />
 
 							</p:column>
+							
+							<p:column headerText="P1" sortBy="#{outputTableEntry.p1}" style="width:85px"
+								filterBy="#{outputTableEntry.p1}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.p1}" />
+							</p:column>
+
+
+							<p:column headerText="P2" sortBy="#{outputTableEntry.p2}" style="width:85px"
+								filterBy="#{outputTableEntry.p2}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.p2}" />
+							</p:column>
+
+
+							<p:column headerText="P3" sortBy="#{outputTableEntry.p3}" style="width:85px"
+								filterBy="#{outputTableEntry.p3}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.p3}" />
+							</p:column>
+
+
+							<p:column headerText="P4" sortBy="#{outputTableEntry.p4}" style="width:85px"
+								filterBy="#{outputTableEntry.p4}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.p4}" />
+							</p:column>
+
+
+							<p:column headerText="P5" sortBy="#{outputTableEntry.p5}" style="width:85px"
+								filterBy="#{outputTableEntry.p5}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.p5}" />
+							</p:column>
+
+
+							<p:column headerText="N1" sortBy="#{outputTableEntry.n1}" style="width:85px"
+								filterBy="#{outputTableEntry.n1}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.n1}" />
+							</p:column>
+
+
+							<p:column headerText="N2" sortBy="#{outputTableEntry.n2}" style="width:85px"
+								filterBy="#{outputTableEntry.n2}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.n2}" />
+							</p:column>
+
+
+							<p:column headerText="N3" sortBy="#{outputTableEntry.n3}" style="width:85px"
+								filterBy="#{outputTableEntry.n3}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.n3}" />
+							</p:column>
+
+
+							<p:column headerText="N4" sortBy="#{outputTableEntry.n4}" style="width:85px"
+								filterBy="#{outputTableEntry.n4}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.n4}" />
+							</p:column>
+
+
+							<p:column headerText="N5" sortBy="#{outputTableEntry.n5}" style="width:85px"
+								filterBy="#{outputTableEntry.n5}" filterStyle="width:50px">
+								<h:outputText value="#{outputTableEntry.n5}" />
+							</p:column>
+							
 
 							<!-- <p:column headerText="Accu.?" title="Is category correct?"
 								style="width:30px">
@@ -150,17 +202,18 @@
 							<p:column headerText="Action" style="width:90px"
 								exportable="false">
 								<p:commandButton value="Feedback"
-									action="#{outputTableView.editAction(outputTableEntry)}"
+									action="#{testingDisplayView.editAction(outputTableEntry)}"
 									rendered="#{not outputTableEntry.editable}"
 									update=":form:singleDT"></p:commandButton>
 								<p:commandButton value="Save"
-									action="#{outputTableView.saveAction(outputTableEntry)}"
+									action="#{testingDisplayView.saveAction(outputTableEntry)}"
 									rendered="#{outputTableEntry.editable}" update=":form:singleDT"></p:commandButton>
 							</p:column>
 
 							<f:facet name="footer">
 								<p:commandButton process="singleDT"
 									update=":form:selectedOutputTableEntry" value="View"
+									
 									oncomplete="PF('reviewDialog').show()" />
 							</f:facet>
 
@@ -185,7 +238,7 @@
 								<h:outputText value="#{outputTableEntry.l1}" />
 						
 
-<h:outputText value="L2" style="width:10%" />
+							<h:outputText value="L2" style="width:10%" />
 							<p:column headerText="L2" sortBy="#{outputTableEntry.l2}"
 								filterBy="#{outputTableEntry.l2}" filterStyle="width:50px">
 								<h:outputText value="#{outputTableEntry.l2}" />
@@ -201,26 +254,26 @@
 							<p:outputPanel id="selectedOutputTableEntry"
 								style="text-align:center;">
 								<p:panelGrid columns="2"
-									rendered="#{not empty outputTableView.selectedOutputTableEntry}">
+									rendered="#{not empty testingDisplayView.selectedOutputTableEntry}">
 									<h:outputText value="Sentiment:" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.sentiment_text}" />
+										value="#{testingDisplayView.selectedOutputTableEntry.sentiment_text}" />
 
 									<h:outputText value="Category" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.category}" />
+										value="#{testingDisplayView.selectedOutputTableEntry.category}" />
 
 									<h:outputText value="City:" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.city}" />
+										value="#{testingDisplayView.selectedOutputTableEntry.city}" />
 
 									<h:outputText value="hotel" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.hotel}" />
+										value="#{testingDisplayView.selectedOutputTableEntry.hotel}" />
 
 									<h:outputText value="Review-Text" />
 									<h:outputText
-										value="#{outputTableView.selectedOutputTableEntry.review}" />
+										value="#{testingDisplayView.selectedOutputTableEntry.review}" />
 								</p:panelGrid>
 							</p:outputPanel>
 						</p:dialog>
